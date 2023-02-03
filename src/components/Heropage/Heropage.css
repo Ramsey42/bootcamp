@@ -1,0 +1,70 @@
+.heroImage {
+    position: absolute;
+    height: 38px;
+    width: 236px;
+    margin-top: 25px;
+    margin-left: 70px;
+}
+.hero-hr{
+    position: absolute;
+    width: 1780px;
+    margin-top: 89px;
+    margin-left: 70px;
+    color: #1A1A1A;
+    margin-right: 70px;
+    border: 1px solid #1A1A1A;
+}
+.background-image {
+    position: absolute;
+    width: 1920px;
+    height: 1080px;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+}
+.logo {
+    position: absolute;
+    width: 299px;
+    height: 299px;
+    top: 473px;
+    left: 1076px;
+    mix-blend-mode: multiply;
+    
+}
+.hero-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 60px;
+    gap: 20px;
+    position: absolute;
+    width: 464px;
+    height: 60px;
+    left: calc(50% - 464px/2);
+    top: 513px;
+    background: #1A1A1A;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.button-content {
+    width: 212px;
+    height: 24px;
+    margin-left: 60px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-style: normal;
+    color: #FFFFFF;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+   
+    
+}
+@font-face {
+    font-family: "Helvetica Neue";
+    src: url("../../assets/font/HelveticaNeue.ttc");
+   
+  }
