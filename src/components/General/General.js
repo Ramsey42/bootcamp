@@ -15,6 +15,10 @@ const General = () => {
     const [inputAbout, setInputAbout] = useState("");
     const [inputEmail, setInputEmail] = useState("");
     const [inputMobile, setInputMobile] = useState("");
+
+    const [file, setFile] = useState(null);
+    const [imageUrl, setImageUrl] = useState("");
+
     
     // handlechangers
     function handleChangeName(event) {
@@ -32,6 +36,11 @@ const General = () => {
     function handleChangeMobile(e) {
         setInputMobile(e.target.value);
     }
+
+    function fileChange(event) {
+        setFile(event.target.files[0]);
+        setImageUrl(URL.createObjectURL(event.target.files[0]));
+      }
  
 
 
@@ -73,7 +82,7 @@ const General = () => {
            </div>
 
            <p className="upload-title">პირადი ფოტოს ატვირთვა</p>
-           <button className="upload" type="file" >ატვირთვა</button>
+           <input className="upload" type="file" id="file-input" onChange={fileChange} />
 
           {/* about */}
            <div className="about-container">
@@ -107,7 +116,7 @@ const General = () => {
         <div className="right-div">
 <h1 className="output-name">{inputName}</h1>
 <h1 className="output-lastname">{inputLastname}</h1>
-<img alt="" className="output-image" src={Example}></img>
+{imageUrl && <img className="output-image" src={imageUrl} alt="Uploaded Image" />}
 <p className="output-email"><img style={{position:"absolute", marginLeft:"-20px"}}  alt="" src={EmailLogo}/>{inputEmail}</p>
 <p className="output-mobile"><img style={{position:"absolute", marginLeft:"-20px"}}  alt="" src={MobileLogo}/>{inputMobile}</p>
 <h1 className="about-output-title">ჩემს შესახებ</h1>

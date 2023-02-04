@@ -737,3 +737,7 @@ text-transform: lowercase;
 color: #000000;
 
 }
+
+.upload::before {
+    content: "Choose a moose";
+  }
