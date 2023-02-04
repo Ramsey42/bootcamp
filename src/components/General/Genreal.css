@@ -738,6 +738,25 @@ color: #000000;
 
 }
 
-.upload::before {
-    content: "Choose a moose";
+.file-uploader {
+    display: inline-block;
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  input[type="file"] {
+    padding: 10px;
+    font-size: 16px;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  label[for="file-input"] {
+    font-size: 18px;
+    display: inline-block;
   }

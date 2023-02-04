@@ -1,8 +1,7 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 //assets
 import Vector from '../../assets/images/Vector.png';
 import Ellipse from '../../assets/images/Ellipse.png';
-import Example from '../../assets/images/example.jpg'
 import EmailLogo from '../../assets/images/email.png';
 import MobileLogo from '../../assets/images/mobile.png';
 import './Genreal.css';
@@ -10,38 +9,119 @@ import './Genreal.css';
 const General = () => {
 
     //  STATES
-    const [inputName, setInputName] = useState("");
-    const [inputLastname, setInputLastname] = useState("");
-    const [inputAbout, setInputAbout] = useState("");
-    const [inputEmail, setInputEmail] = useState("");
-    const [inputMobile, setInputMobile] = useState("");
+    // const [inputName, setInputName] = useState("");
+    // const [inputLastname, setInputLastname] = useState("");
+    // const [inputAbout, setInputAbout] = useState("");
+    // const [inputEmail, setInputEmail] = useState("");
+    // const [inputMobile, setInputMobile] = useState("");
 
-    const [file, setFile] = useState(null);
-    const [imageUrl, setImageUrl] = useState("");
+
 
     
     // handlechangers
-    function handleChangeName(event) {
-    setInputName(event.target.value);
-    }
-    function handleChangeLastname(event) {
-        setInputLastname(event.target.value);
-    }
-    function handleChangeAbout(event) {
-        setInputAbout(event.target.value);
-    }
-    function handleChangeEmail(event) {
-        setInputEmail(event.target.value);
-    }
-    function handleChangeMobile(e) {
-        setInputMobile(e.target.value);
-    }
+    // function handleChangeName(event) {
+    // setInputName(event.target.value);
+    // }
+    // function handleChangeLastname(event) {
+    //     setInputLastname(event.target.value);
+    // }
+    // function handleChangeAbout(event) {
+    //     setInputAbout(event.target.value);
+    // }
+    // function handleChangeEmail(event) {
+    //     setInputEmail(event.target.value);
+    // }
+    // function handleChangeMobile(e) {
+    //     setInputMobile(e.target.value);
+    // }
 
-    function fileChange(event) {
-        setFile(event.target.files[0]);
-        setImageUrl(URL.createObjectURL(event.target.files[0]));
-      }
+    
+
+
+      // localstorage
+      //name
+      const [valuename, setValuename] = useState(
+        localStorage.getItem("inputFieldNameValue") || ""
+      );
+    
+      useEffect(() => {
+        localStorage.setItem("inputFieldNameValue", valuename);
+      }, [valuename]);
  
+      function handleChangeName(event) {
+        setValuename(event.target.value);
+      }
+
+      // lastname
+      const [valuelastname, setValuelastname] = useState(
+        localStorage.getItem("inputFieldLastnameValue") || ""
+      );
+    
+      useEffect(() => {
+        localStorage.setItem("inputFieldLastnameValue", valuelastname);
+      }, [valuelastname]);
+ 
+      function handleChangeLastname(event) {
+        setValuelastname(event.target.value);
+      }
+
+      //about
+      const [valueabout, setValueabout] = useState(
+        localStorage.getItem("inputFieldAboutValue") || ""
+      );
+    
+      useEffect(() => {
+        localStorage.setItem("inputFieldAboutValue", valueabout);
+      }, [valueabout]);
+ 
+      function handleChangeAbout(event) {
+        setValueabout(event.target.value);
+      }
+
+      //email
+
+      const [valueemail, setValueemail] = useState(
+        localStorage.getItem("inputFieldEmailValue") || ""
+      );
+    
+      useEffect(() => {
+        localStorage.setItem("inputFieldEmailValue", valueemail);
+      }, [valueemail]);
+ 
+      function handleChangeEmail(event) {
+        setValueemail(event.target.value);
+      }
+
+      //mobile
+
+      const [valuemobile, setValuemobile] = useState(
+        localStorage.getItem("inputFieldMobileValue") || ""
+      );
+    
+      useEffect(() => {
+        localStorage.setItem("inputFieldMobileValue", valuemobile);
+      }, [valuemobile]);
+ 
+      function handleChangeMobile(event) {
+        setValuemobile(event.target.value);
+      }
+
+      //fileUploader
+      const [image, setImage] = useState(
+        localStorage.getItem("uploadedImage") || null
+      );
+      useEffect(() => {
+        localStorage.setItem("uploadedImage", image);
+      }, [image]);
+      function handleChangeUploader(event) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          setImage(e.target.result);
+        };
+        reader.readAsDataURL(event.target.files[0]);
+      };
+
+
 
 
     return(
@@ -63,7 +143,9 @@ const General = () => {
             <label className="name-label" for="name">სახელი</label>
 
            <div className="frame">
-           <input className="input-name" onChange={handleChangeName} type="text" id="name" name="name"/>
+           <input className="input-name" value={valuename}   onChange={(event) => {
+        handleChangeName(event);
+      }} type="text" id="name" name="name"/>
            
            </div>
            <p className="validation">მინიმუმ 2 ასო, ქართლი ასოები</p>
@@ -75,19 +157,26 @@ const General = () => {
             <label className="lastname-label" for="name">გვარი</label>
 
            <div className="frame-lastname">
-           <input className="input-lastname" onChange={handleChangeLastname}  type="text" id="name" name="name"/>
+           <input className="input-lastname" value={valuelastname} onChange={(event) => {
+        handleChangeLastname(event);
+            }} type="text" id="name" name="name"/>
            
            </div>
            <p className="validation-lastname">მინიმუმ 2 ასო, ქართლი ასოები</p>
            </div>
 
            <p className="upload-title">პირადი ფოტოს ატვირთვა</p>
-           <input className="upload" type="file" id="file-input" onChange={fileChange} />
-
+         <div className="upload">
+           <input   type="file" id="file-input" onChange={handleChangeUploader} />
+           <label htmlFor="file-input">ატვირთვა</label>
+           
+           </div>
           {/* about */}
            <div className="about-container">
         <p className="about-title">ჩემ შესახებ (არასავალდებულო)</p>
-        <textarea onChange={handleChangeAbout} className="about-field">
+        <textarea  value={valueabout} onChange={(event) => {
+        handleChangeAbout(event);
+            }} className="about-field">
 
         </textarea>
            </div>
@@ -95,7 +184,9 @@ const General = () => {
            {/* email */}
            <div className="email-container">
         <p className="email-title">ელ.ფოსტა</p>
-        <textarea onChange={handleChangeEmail} className="email-field">
+        <textarea value={valueemail}  onChange={(event) => {
+        handleChangeEmail(event);
+            }} className="email-field">
 
         </textarea>
         <p className="email-validation">უნდა მთავრდებოდეს @redberry.ge-ით</p>
@@ -104,7 +195,9 @@ const General = () => {
            {/* mobile */}
            <div className="mobile-container">
         <p className="mobile-title">მობილურის ნომერი</p>
-        <textarea onChange={handleChangeMobile} className="mobile-field">
+        <textarea value={valuemobile} onChange={(event) => {
+        handleChangeMobile(event);
+            }} className="mobile-field">
 
         </textarea>
         <p className="mobile-validation">უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს</p>
@@ -114,13 +207,14 @@ const General = () => {
 
 
         <div className="right-div">
-<h1 className="output-name">{inputName}</h1>
-<h1 className="output-lastname">{inputLastname}</h1>
-{imageUrl && <img className="output-image" src={imageUrl} alt="Uploaded Image" />}
-<p className="output-email"><img style={{position:"absolute", marginLeft:"-20px"}}  alt="" src={EmailLogo}/>{inputEmail}</p>
-<p className="output-mobile"><img style={{position:"absolute", marginLeft:"-20px"}}  alt="" src={MobileLogo}/>{inputMobile}</p>
+<h1 className="output-name" >{valuename}</h1>
+<h1 className="output-lastname">{valuelastname}</h1>
+{image && <img className="output-image" src={image} alt="Uploaded" />}
+
+<p className="output-email"><img style={{position:"absolute", marginLeft:"-20px"}}  alt="" src={EmailLogo}/>{valueemail}</p>
+<p className="output-mobile"><img style={{position:"absolute", marginLeft:"-20px"}}  alt="" src={MobileLogo}/>{valuemobile}</p>
 <h1 className="about-output-title">ჩემს შესახებ</h1>
-<p className="about-output">{inputAbout}</p>
+<p className="about-output">{valueabout}</p>
 
         </div>
         </div>
