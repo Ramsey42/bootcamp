@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { Link } from "react-router-dom";
 //assets
 import Vector from '../../assets/images/Vector.png';
 import Ellipse from '../../assets/images/Ellipse.png';
@@ -7,36 +8,12 @@ import MobileLogo from '../../assets/images/mobile.png';
 import './Genreal.css';
 
 const General = () => {
-
-    //  STATES
-    // const [inputName, setInputName] = useState("");
-    // const [inputLastname, setInputLastname] = useState("");
-    // const [inputAbout, setInputAbout] = useState("");
-    // const [inputEmail, setInputEmail] = useState("");
-    // const [inputMobile, setInputMobile] = useState("");
-
-
-
-    
-    // handlechangers
-    // function handleChangeName(event) {
-    // setInputName(event.target.value);
-    // }
-    // function handleChangeLastname(event) {
-    //     setInputLastname(event.target.value);
-    // }
-    // function handleChangeAbout(event) {
-    //     setInputAbout(event.target.value);
-    // }
-    // function handleChangeEmail(event) {
-    //     setInputEmail(event.target.value);
-    // }
-    // function handleChangeMobile(e) {
-    //     setInputMobile(e.target.value);
-    // }
-
-    
-
+      // validation states
+      //name
+      const [error, setError] = useState(null);
+      const [lastnameError, setLastnameError] = useState(null);
+      const [emailError, setEmailError] = useState(null);
+      const [mobileError, setMobileError] = useState(null);
 
       // localstorage
       //name
@@ -50,6 +27,16 @@ const General = () => {
  
       function handleChangeName(event) {
         setValuename(event.target.value);
+        if (!event.target.value) {
+          setError('ველის შევსება სავალდებულოა');
+        } else if (event.target.value.length < 2) {
+          setError('გთხოვთ შეიყვანოთ მინიმუმ 2 სიმბოლო');
+        } else if (!/^[ა-ჰ]+$/.test(event.target.value)) {
+          setError('შეიყვანეთ მხოლოდ ქართული სიმბოლოები');
+        } else {
+          setError(null);
+        }
+        
       }
 
       // lastname
@@ -63,6 +50,17 @@ const General = () => {
  
       function handleChangeLastname(event) {
         setValuelastname(event.target.value);
+
+
+        if (!event.target.value) {
+          setLastnameError('ველის შევსება სავალდებულოა');
+        } else if (event.target.value.length < 2) {
+          setLastnameError('გთხოვთ შეიყვანოთ მინიმუმ 2 სიმბოლო');
+        } else if (!/^[ა-ჰ]+$/.test(event.target.value)) {
+          setLastnameError('შეიყვანეთ მხოლოდ ქართული სიმბოლოები');
+        } else {
+          setLastnameError(null);
+        }
       }
 
       //about
@@ -90,6 +88,16 @@ const General = () => {
  
       function handleChangeEmail(event) {
         setValueemail(event.target.value);
+
+         // Validation logic
+ 
+if(!event.target.value){
+  setEmailError('ველის შევსება სავალდებულოა');
+}   else if (!event.target.value.endsWith('@redberry.ge')) {
+    setEmailError('ელ.ფოსტა უნდა მთავრდებოდეს @redberry.ge -თი');
+  } else {
+    setEmailError(null);
+  }
       }
 
       //mobile
@@ -104,6 +112,16 @@ const General = () => {
  
       function handleChangeMobile(event) {
         setValuemobile(event.target.value);
+
+          // Validation logic for Georgian mobile number
+    const mobileNumberRegex = /^(\+?995|0)?(5[0123456789]\d{7})$/;
+   if(!event.target.value){
+      setMobileError('ველის შევსება სავალდებულოა');
+   } else if (!mobileNumberRegex.test(event.target.value)) {
+      setMobileError('მაგ.: +995 5xx xxx xxx ნუ გამოიყენებთ WhiteSpace-ს');
+    } else {
+      setMobileError(null);
+    }
       }
 
       //fileUploader
@@ -139,35 +157,46 @@ const General = () => {
             
             
 <div className="parent-name">
-    
+
             <label className="name-label" for="name">სახელი</label>
 
            <div className="frame">
-           <input className="input-name" value={valuename}   onChange={(event) => {
+            
+           <input className="input-name" value={valuename} 
+           required
+           onChange={(event) => {
         handleChangeName(event);
       }} type="text" id="name" name="name"/>
+      
            
            </div>
-           <p className="validation">მინიმუმ 2 ასო, ქართლი ასოები</p>
+  {error ? <div className="validation" style={{ color: 'red' }}>{error}</div> :  <p className="validation">მინიმუმ 2 ასო, ქართლი ასოები</p>}
+        
+           
+           
            </div>
 
 {/* lastname input  */}
            <div className="parent-lastname">
+            
     
             <label className="lastname-label" for="name">გვარი</label>
 
            <div className="frame-lastname">
-           <input className="input-lastname" value={valuelastname} onChange={(event) => {
+            
+           <input className="input-lastname" value={valuelastname}
+           required
+           onChange={(event) => {
         handleChangeLastname(event);
             }} type="text" id="name" name="name"/>
            
            </div>
-           <p className="validation-lastname">მინიმუმ 2 ასო, ქართლი ასოები</p>
+           {lastnameError ? <div className="validation" style={{ color: 'red' }}>{lastnameError}</div> :  <p className="validation-lastname">მინიმუმ 2 ასო, ქართლი ასოები</p>}
            </div>
 
            <p className="upload-title">პირადი ფოტოს ატვირთვა</p>
          <div className="upload">
-           <input   type="file" id="file-input" onChange={handleChangeUploader} />
+           <input  required type="file" id="file-input" onChange={handleChangeUploader} />
            <label htmlFor="file-input">ატვირთვა</label>
            
            </div>
@@ -184,25 +213,36 @@ const General = () => {
            {/* email */}
            <div className="email-container">
         <p className="email-title">ელ.ფოსტა</p>
-        <textarea value={valueemail}  onChange={(event) => {
+        <textarea value={valueemail} 
+          required
+          pattern=".+@redberry.ge$"
+          title="Email must end with @redberry.ge"
+        onChange={(event) => {
         handleChangeEmail(event);
             }} className="email-field">
 
         </textarea>
-        <p className="email-validation">უნდა მთავრდებოდეს @redberry.ge-ით</p>
+ {emailError ? <div className="validation" style={{ color: 'red' }}>{emailError}</div> :  <p className="email-validation">უნდა მთავრდებოდეს @redberry.ge-ით</p>}
+        
            </div>
 
            {/* mobile */}
            <div className="mobile-container">
         <p className="mobile-title">მობილურის ნომერი</p>
-        <textarea value={valuemobile} onChange={(event) => {
+        <textarea value={valuemobile}
+        required
+        onChange={(event) => {
         handleChangeMobile(event);
             }} className="mobile-field">
 
         </textarea>
-        <p className="mobile-validation">უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს</p>
+        {mobileError ? <div className="validation" style={{ color: 'red' }}>{mobileError}</div> : <p className="mobile-validation">უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს</p>}
+
+        
            </div>
+           <Link to="/experience">
         <button className="submit-personal-info"><p className="submit-personal-info-content">შემდეგი</p> </button>
+        </Link>
         </div>
 
 

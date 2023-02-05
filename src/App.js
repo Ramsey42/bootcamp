@@ -4,6 +4,7 @@ import {  Route, Routes } from 'react-router';
 
 import './App.css';
 import General from './components/General/General';
+import Experience from './components/Experience/Experience';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
 <Routes>
 <Route  path="/" element={<Heropage/>} />
 <Route  path="/info" element={<General/>} />
+<Route  path="/experience" element={<Experience/>} />
 </Routes>
 </div>
   );
