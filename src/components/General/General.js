@@ -5,9 +5,17 @@ import Vector from '../../assets/images/Vector.png';
 import Ellipse from '../../assets/images/Ellipse.png';
 import EmailLogo from '../../assets/images/email.png';
 import MobileLogo from '../../assets/images/mobile.png';
+import StarLogo from '../../assets/images/star.png';
+
 import './Genreal.css';
 
 const General = () => {
+//cleas localstorage
+const clearLocalStorage = () => {
+  localStorage.clear();
+};
+
+
       // validation states
       //name
       const [error, setError] = useState(null);
@@ -15,6 +23,12 @@ const General = () => {
       const [emailError, setEmailError] = useState(null);
       const [mobileError, setMobileError] = useState(null);
 
+      // in case of any errors hide a next button
+      function checkErrors() {
+        if (!error && !lastnameError && !emailError && !mobileError) {
+          return <Link to="/experience"><button className="submit-personal-info"><p className="submit-personal-info-content">შემდეგი</p></button></Link>;
+        }
+      }
       // localstorage
       //name
       const [valuename, setValuename] = useState(
@@ -146,7 +160,11 @@ if(!event.target.value){
         <div style={{width:"100%", height:"100%"}}>
         <div className="left-div" >
               <img className="container" alt="" src={Ellipse}></img>
-          <img alt='' className="vector" src={Vector}></img>
+              <Link to="/">
+             <button className="vector" style={{zIndex:"-1"}}  onClick={clearLocalStorage}>
+          <img  alt=''  className="vector" src={Vector}></img>
+          </button> 
+          </Link>
         
             <h1 className="general-header">პირადი ინფო</h1>
             
@@ -170,8 +188,8 @@ if(!event.target.value){
       
            
            </div>
-  {error ? <div className="validation" style={{ color: 'red' }}>{error}</div> :  <p className="validation">მინიმუმ 2 ასო, ქართლი ასოები</p>}
-        
+           {error ? <div className="validation" style={{ color: 'red' }}>{error}</div> : <p className="validation">მინიმუმ 2 ასო, ქართლი ასოები</p>}
+              
            
            
            </div>
@@ -240,9 +258,7 @@ if(!event.target.value){
 
         
            </div>
-           <Link to="/experience">
-        <button className="submit-personal-info"><p className="submit-personal-info-content">შემდეგი</p> </button>
-        </Link>
+           {checkErrors()}
         </div>
 
 
@@ -257,6 +273,7 @@ if(!event.target.value){
 <p className="about-output">{valueabout}</p>
 
         </div>
+        <img alt='' className="star-logo" src={StarLogo}></img>
         </div>
     )
 }
