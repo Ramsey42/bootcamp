@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+// import { useHistory } from 'react';
 //assets
 import Vector from '../../assets/images/Vector.png';
 import Ellipse from '../../assets/images/Ellipse.png';
@@ -7,9 +9,12 @@ import EmailLogo from '../../assets/images/email.png';
 import MobileLogo from '../../assets/images/mobile.png';
 import StarLogo from '../../assets/images/star.png';
 
+import Experience from "../Experience/Experience";
 import './Genreal.css';
 
 const General = () => {
+  const dispatch = useDispatch();
+  // const history = useHistory();
 //cleas localstorage
 const clearLocalStorage = () => {
   localStorage.clear();
@@ -37,10 +42,14 @@ const clearLocalStorage = () => {
     
       useEffect(() => {
         localStorage.setItem("inputFieldNameValue", valuename);
+        // history.push(`/experience/${valuename}`);
+
       }, [valuename]);
  
       function handleChangeName(event) {
         setValuename(event.target.value);
+        dispatch({ type: 'UPDATE_INPUT_VALUE', valuename: event.target.value });
+
         if (!event.target.value) {
           setError('ველის შევსება სავალდებულოა');
         } else if (event.target.value.length < 2) {
@@ -49,6 +58,7 @@ const clearLocalStorage = () => {
           setError('შეიყვანეთ მხოლოდ ქართული სიმბოლოები');
         } else {
           setError(null);
+          
         }
         
       }
@@ -264,6 +274,7 @@ if(!event.target.value){
 
         <div className="right-div">
 <h1 className="output-name" >{valuename}</h1>
+
 <h1 className="output-lastname">{valuelastname}</h1>
 {image && <img className="output-image" src={image} alt="Uploaded" />}
 
@@ -274,6 +285,7 @@ if(!event.target.value){
 
         </div>
         <img alt='' className="star-logo" src={StarLogo}></img>
+   
         </div>
     )
 }
