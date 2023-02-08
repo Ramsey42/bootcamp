@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 
 import { connect } from "react-redux";
+// import { useDispatch } from "react-redux";
 
 // assets
 import VectorLogo from '../../assets/images/Vector.png';
@@ -19,10 +20,177 @@ import { useSelector } from "react-redux";
 
 const Experience = ({}) => {
 
+//cleas localstorage
+const clearLocalStorage = () => {
+  localStorage.clear();
+};
 
 
-  const valuename = useSelector((state) => state.valuename);
-  const valuelastname = useSelector((state) => state.valuelastname);
+// validation state 
+const [positionError, setPositionError] = useState(null);
+const [employeeError, setEmployeeError] = useState(null);
+const [startdateError, setstartdateError] = useState(null);
+const [enddateError, setEnddateError] = useState(null);
+const [discriptionError, setDiscriptionError] = useState(null);
+
+
+
+function checkErrors() {
+  if (!positionError && !employeeError && !startdateError && !enddateError && !discriptionError) {
+    return <Link to="/education"><button className="submit-personal-info"><p className="submit-personal-info-content">შემდეგი</p></button></Link>;
+  }
+}
+
+
+
+  // const dispatch = useDispatch();
+      // localstorage
+      //position
+      const [valueposition, setValueposition] = useState(
+        localStorage.getItem("inputFieldPositionValue") || ""
+      );
+    
+      useEffect(() => {
+        localStorage.setItem("inputFieldPositionValue", valueposition);
+        // history.push(`/experience/${valuename}`);
+
+      }, [valueposition]);
+ 
+
+
+      function handleChangePosition(event) {
+        setValueposition(event.target.value);
+        // dispatch({ type: 'UPDATE_INPUT_VALUE', valuename: event.target.value });
+
+        if (!event.target.value) {
+          setPositionError('ველის შევსება სავალდებულოა');
+        } else if (event.target.value.length < 2) {
+          setPositionError('გთხოვთ შეიყვანოთ მინიმუმ 2 სიმბოლო');
+        }  else {
+          setPositionError(null);
+          
+        }
+        
+      }
+
+
+
+      //employee
+      const [valueemployee, setValueemployee] = useState(
+        localStorage.getItem("inputFieldEmployeeValue") || ""
+      );
+    
+      useEffect(() => {
+        localStorage.setItem("inputFieldEmployeeValue", valueemployee);
+        // history.push(`/experience/${valuename}`);
+
+      }, [valueemployee]);
+ 
+
+
+      function handleChangeEmployee(event) {
+        setValueemployee(event.target.value);
+        // dispatch({ type: 'UPDATE_INPUT_VALUE', valuename: event.target.value });
+
+        if (!event.target.value) {
+          setEmployeeError('ველის შევსება სავალდებულოა');
+        } else if (event.target.value.length < 2) {
+          setEmployeeError('გთხოვთ შეიყვანოთ მინიმუმ 2 სიმბოლო');
+        }  else {
+          setEmployeeError(null);
+          
+        }
+        
+      }
+
+      //startdate
+      const [valuestartdate, setValuestartdate] = useState(
+        localStorage.getItem("inputFieldStartdateValue") || ""
+      );
+    
+      useEffect(() => {
+        localStorage.setItem("inputFieldStartdateValue", valuestartdate);
+        // history.push(`/experience/${valuename}`);
+
+      }, [valuestartdate]);
+ 
+
+
+      function handleChangeStartdate(event) {
+        setValuestartdate(event.target.value);
+        // dispatch({ type: 'UPDATE_INPUT_VALUE', valuename: event.target.value });
+
+        if (!event.target.value) {
+          setstartdateError('ველის შევსება სავალდებულოა');
+        } else {
+          setstartdateError(null);
+          
+        }
+        
+      }
+
+      //enddate
+      const [valueenddate, setValueenddate] = useState(
+        localStorage.getItem("inputFieldEnddateValue") || ""
+      );
+    
+      useEffect(() => {
+        localStorage.setItem("inputFieldEnddateValue", valueenddate);
+        // history.push(`/experience/${valuename}`);
+
+      }, [valueenddate]);
+ 
+
+
+      function handleChangeEnddate(event) {
+        setValueenddate(event.target.value);
+        // dispatch({ type: 'UPDATE_INPUT_VALUE', valuename: event.target.value });
+
+        if (!event.target.value) {
+          setEnddateError('ველის შევსება სავალდებულოა');
+        } else {
+          setEnddateError(null);
+          
+        }
+        
+      }
+
+
+
+  //discription
+  const [valuediscription, setValuediscription] = useState(
+    localStorage.getItem("inputFieldDiscriptionValue") || ""
+  );
+
+  useEffect(() => {
+    localStorage.setItem("inputFieldDiscriptionValue", valuediscription);
+    // history.push(`/experience/${valuename}`);
+
+  }, [valuediscription]);
+
+
+
+  function handleChangeDiscription(event) {
+    setValuediscription(event.target.value);
+    // dispatch({ type: 'UPDATE_INPUT_VALUE', valuename: event.target.value });
+
+    if (!event.target.value) {
+      setDiscriptionError('ველის შევსება სავალდებულოა');
+    } else if (event.target.value.length < 2) {
+      setDiscriptionError('გთხოვთ შეიყვანოთ მინიმუმ 2 სიმბოლო');
+    } else if (!/^[ა-ჰ]+$/.test(event.target.value)) {
+      setDiscriptionError('შეიყვანეთ მხოლოდ ქართული სიმბოლოები');
+    } else {
+      setDiscriptionError(null);
+      
+    }
+    
+  }
+
+
+
+  // const valuename = useSelector((state) => state.valuename);
+  // const valuelastname = useSelector((state) => state.valuelastname);
 
 
 
@@ -31,8 +199,12 @@ const Experience = ({}) => {
     <div className="experience-container">
       <div className="first">
         <img alt="" className="experience-ellipse" src={EllipseLogo}></img>
-        <img alt="" className="experience-vector" src={VectorLogo}></img>
-        
+
+        <Link to="/">
+             <button className="experience-return-button"   onClick={clearLocalStorage}>
+          <img   alt=''  className="experience-vector" src={VectorLogo}></img>
+          </button> 
+          </Link>        
 
         <h1 className="experience-header">გამოცდილება</h1>
         <h2 className="experience-page">2/3</h2>
@@ -40,40 +212,69 @@ const Experience = ({}) => {
 
         <div className="position-wrapper">
           <label className="position-label">თანამდებობა</label>
-          <input className="position-input" />   
-          <p className="position-hint">მინიმუმ 2 სიმბოლო</p>
+          <input className="position-input"
+          value={valueposition} 
+           onChange={(event) => {
+        handleChangePosition(event);
+      }} type="text" id="position" name="position" />   
+          {positionError ? <div className="validation" style={{ color: 'red' }}>{positionError}</div> : <p className="position-hint">მინიმუმ 2 ასო, ქართლი ასოები</p>}
         </div>
 
         <div className="employer-wrapper">
           <label className="employer-label">დამსაქმებელი</label>
-          <input className="employer-input" />   
-          <p className="employer-hint">მინიმუმ 2 სიმბოლო</p>
+          <input className="employer-input"  
+          value={valueemployee} 
+           onChange={(event) => {
+        handleChangeEmployee(event);
+      }} type="text" id="employee" name="employee"/>   
+        {employeeError ? <div className="validation" style={{ color: 'red' }}>{employeeError}</div> : <p className="employer-hint">მინიმუმ 2 ასო</p>}
         </div>
 
         <div className="starting-date-wrapper">
           <label className="starting-date-label">დაწყების რიცხვი</label>
-          <input type='date' className="starting-date-input" />   
-          <p className="starting-date-hint">დინამიური კონტენტი</p>
+          <input type='date' className="starting-date-input"
+            value={valuestartdate} 
+            onChange={(event) => {
+         handleChangeStartdate(event);
+       }}  id="startdate" name="startdate" />   
+          {startdateError ? <div className="validation" style={{ color: 'red' }}>{startdateError}</div> : <p className="starting-date-hint"></p>}
+              
         </div>
 
         <div className="ending-date-wrapper">
           <label className="ending-date-label">დამთავრების რიცხვი</label>
-          <input type='date' className="ending-date-input" />   
-          <p className="ending-date-hint">დინამიური კონტენტი</p>
+          <input type='date' className="ending-date-input"
+           value={valueenddate} 
+           onChange={(event) => {
+        handleChangeEnddate(event);
+      }}  id="enddate" name="enddate"
+          />   
+                   {enddateError ? <div className="validation" style={{ color: 'red' }}>{enddateError}</div> : <p className="ending-date-hint"></p>}
+
         </div>
 
         <div className="discription-wrapper">
           <label className="discription-label">აღწერა</label>
-          <textarea  className="discription-input" />   
-          <p className="discription-hint">დინამიური კონტენტი</p>
+          <textarea  className="discription-input"
+           value={valuediscription} 
+           onChange={(event) => {
+        handleChangeDiscription(event);
+      }}  id="discription" name="discription" /> 
+           
+           {discriptionError ? <div className="validation" style={{ color: 'red' }}>{discriptionError}</div> : <p className="discription-hint">მინიმუმ 2 ასო, ქართლი ასოები</p>}
+
         </div>
 <hr className="experience-hr2"></hr>
 
 <button className="add-experience"><p className="add-experience-content">მეტი გამოცდილების დამატება</p></button>
-
+<Link to='/info'>
 <button className="previous-page"><p className="previous-page-content">უკან</p></button>
+</Link>
 
-<button className="submit-experience"><p className="submit-experience-content">შემდეგი</p></button>
+<div>
+           {checkErrors()}
+        </div>
+
 
       </div>
 
@@ -102,8 +303,13 @@ const Experience = ({}) => {
         </p>
         <hr className="return-hr2"></hr> */}
                <Experienceprops
-valuename={valuename}
-valuelastname={valuelastname}
+// valuename={valuename}
+// valuelastname={valuelastname}
+valueposition={valueposition}
+valueemployee={valueemployee}
+valuestartdate={valuestartdate}
+valueenddate={valueenddate}
+valuediscription={valuediscription}
  />
       </div>
  

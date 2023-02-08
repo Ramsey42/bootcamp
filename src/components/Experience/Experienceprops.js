@@ -1,5 +1,8 @@
 import React from "react";
 import './Experience.css';
+
+
+//assets
 import EmailLogo from '../../assets/images/email.png';
 import Star from '../../assets/images/star.png';
 import MobileLogo from '../../assets/images/mobile.png';
@@ -7,8 +10,8 @@ import MobileLogo from '../../assets/images/mobile.png';
 const Experienceprops = (props) => {
     return(
         <div className="second">
-        <h1 className="return-name">{props.valuename}</h1>
-        <h1 className="return-lastname">{props.valuelastname}</h1>
+        <h1 className="return-name">Name</h1>
+        <h1 className="return-lastname">lastname</h1>
         <img alt='' className="return-image" src={Star}></img>
         <img alt='' className="emailimage" src={EmailLogo} ></img>
         <p className="return-email">anzor666@redberry.ge</p>
@@ -21,12 +24,11 @@ const Experienceprops = (props) => {
         </p>
         <hr className="return-hr"></hr>
         <h1 className="return-experiencetitle">გამოცდილება</h1>
-        <h1 className="return-position">React Native Developer,</h1>
-        <h1 className="return-date">2020-09-23 - 2020-09-23</h1>
+        <h1 className="return-position">{props.valueposition}, {props.valueemployee}</h1>
+        {/* <h1 className="return-employee">{props.valueemployee}</h1> */}
+        <h1 className="return-date">{props.valuestartdate} - {props.valueenddate}</h1>
         <p className="return-description">
-          Experienced Javascript Native Developer With 5 Years in The industry. Proficient Withreact.
-          Used Problem-Solving Aptitude To Enchange Application Performance By 14%. Created Data 
-          Cisualisation Tools And Integrated Designs.
+          {props.valuediscription}
         </p>
         <hr className="return-hr2"></hr>
       </div>

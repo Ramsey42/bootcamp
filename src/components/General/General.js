@@ -195,7 +195,7 @@ if(!event.target.value){
            <div className="frame">
             
            <input className="input-name" value={valuename} 
-           required
+           
            onChange={(event) => {
         handleChangeName(event);
       }} type="text" id="name" name="name"/>

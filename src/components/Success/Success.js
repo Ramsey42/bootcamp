@@ -7,11 +7,16 @@ import MobileLogo from '../../assets/images/mobile.png'
 import EmailLogo from '../../assets/images/email.png';
 import Star from '../../assets/images/star.png';
 import Rect from '../../assets/images/Rect.png';
+import VectorLogo from '../../assets/images/Vector.png';
+import EllipseLogo from '../../assets/images/Ellipse.png';
 
 const Success = () => {
     return (
         <div className="success-wrapper">
+        <img alt="" className="success-ellipse" src={EllipseLogo}></img>
+        <img alt="" className="success-vector" src={VectorLogo}></img>
         <div className="cv-wrapper">
+       
             <div className="cv-name">ანზორ</div>
             <div className="cv-lastname">მუმლაძე</div>
             <img alt='' src={EmailLogo} className='cv-emaillogo'></img>

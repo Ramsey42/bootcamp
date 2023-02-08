@@ -393,3 +393,22 @@ left: 78px;
 top: 834px;
 
 }
+.success-vector {
+    position: absolute;
+    width: 9.21px;
+    height: 16px;
+    left: 62px;
+    top: 57px;
+    
+    /* შავი/500 */
+    /* 
+    background: #2E2E2E; */
+    }
+    .success-ellipse {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    left: 48px;
+    top: 45px;
+    /* background: #FFFFFF; */
+    }

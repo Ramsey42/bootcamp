@@ -3,7 +3,7 @@ import './Educationprops.css';
 import Star from '../../assets/images/star.png';
 import EmailLogo from '../../assets/images/email.png';
 import MobileLogo from '../../assets/images/mobile.png';
-const Educationprops = () => {
+const Educationprops = (props) => {
     return(
 <div>
 <h1 className="return-name">ანზორ</h1>
@@ -32,14 +32,11 @@ const Educationprops = () => {
 
 
         <h1 className="return-aducationtitle">განათლება</h1>
-        <h1 className="return-degreedegree">წმ. ანდრიას საპატრიარქოს სასწავლებელი,</h1>
-        <h1 className="return-degree">სტუდენტი</h1>
-        <h1 className="return-graduationdate">2020-02-02</h1>
+        <h1 className="return-degreedegree">{props.valueeducation}</h1>
+        <h1 className="return-degree">{props.valuedegree}</h1>
+        <h1 className="return-graduationdate">{props.valuegraduate}</h1>
         <p className="return-aducation-description">
-        ვსწავლობდი გულმოდგინეთ. მყავდა ფრიადები. რაც შემეძლო — ვქენი. კომპიუტერები 
-        მიყვარდა. ვიჯექი ჩემთვის, ვაკაკუნებდი ამ კლავიშებზე. მეუნებოდნენ —
-         დაჯექი, წაიკითხე რამე, რას აკაკუნებ, დრო მოვა და ჩაგიკაკუნებსო. აჰა,
-          მოვიდა დრო და ვერა ვარ დეველოპერი?
+        {props.valueedudiscription}
         </p>
 </div>
     )

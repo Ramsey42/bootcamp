@@ -132,7 +132,7 @@ flex-grow: 0;
 
 .position-input {
     box-sizing: border-box;
-
+   
     width: 798px;
     height: 48px;
     
@@ -227,7 +227,8 @@ flex-grow: 0;
 }
 .employer-input {
     box-sizing: border-box;
-
+    font-family: 'Helvetica Neue';
+    font-style: normal;
     width: 798px;
     height: 48px;
     
@@ -485,11 +486,12 @@ flex-grow: 0;
 
 width: 798px;
 height: 123px;
-
+padding-left: 16px;
 background: #FFFFFF;
 border: 1px solid #BCBCBC;
 border-radius: 4px;
-
+font-family: 'Helvetica Neue';
+font-style: normal;
 /* Inside auto layout */
 
 flex: none;
@@ -859,4 +861,33 @@ top: 722px;
 
 border: 1px solid #C8C8C8;
 
+}
+.return-employee {
+    
+position: absolute;
+width: 70px;
+height: 20px;
+left: 1385px;
+top: 542px;
+
+font-family: 'Helvetica Neue';
+font-style: normal;
+font-weight: bold;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+
+
+/* off black */
+
+color: #1A1A1A;
+}
+.experience-return-button{
+   position: absolute;
+    
+    width: 1px;
+    height: 1px;
+opacity: 1;
+   
+    
 }
