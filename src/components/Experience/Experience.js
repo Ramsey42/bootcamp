@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 
+import { connect } from "react-redux";
+
 // assets
 import VectorLogo from '../../assets/images/Vector.png';
 import EllipseLogo from '../../assets/images/Ellipse.png';
@@ -17,9 +19,14 @@ import { useSelector } from "react-redux";
 
 const Experience = ({}) => {
 
-  const valuename = useSelector((state) => state.valuename);
 
-  // const { valuename } = useParams();
+
+  const valuename = useSelector((state) => state.valuename);
+  const valuelastname = useSelector((state) => state.valuelastname);
+
+
+
+ 
   return(
     <div className="experience-container">
       <div className="first">
@@ -70,13 +77,9 @@ const Experience = ({}) => {
 
       </div>
 
-{/* <Experienceprops
-valuename="asdf"
-valuelastname={<General(valuename)/>}
 
-/> */}
   <div className="second">
-        <h1 className="return-name">{valuename}</h1>
+        {/* <h1 className="return-name">{valuename}</h1>
         <h1 className="return-lastname">ჯჰბ</h1>
         <img alt='' className="return-image" src={Star}></img>
         <img alt='' className="emailimage" src={EmailLogo} ></img>
@@ -97,9 +100,13 @@ valuelastname={<General(valuename)/>}
           Used Problem-Solving Aptitude To Enchange Application Performance By 14%. Created Data 
           Cisualisation Tools And Integrated Designs.
         </p>
-        <hr className="return-hr2"></hr>
+        <hr className="return-hr2"></hr> */}
+               <Experienceprops
+valuename={valuename}
+valuelastname={valuelastname}
+ />
       </div>
-
+ 
 
 
 
@@ -110,4 +117,13 @@ valuelastname={<General(valuename)/>}
   )
 }
 
-export default Experience;
+
+const mapDispatchToProps = dispatch => ({
+  mapStateToProps: (valuename, valuelastname) => dispatch(mapStateToProps(valuename, valuelastname)),
+});
+const mapStateToProps = state => ({
+  valuename: state.valuename,
+  valuelastname: state.valuelastname,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Experience);

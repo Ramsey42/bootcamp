@@ -3,7 +3,8 @@ import { createStore } from "redux";
 
 // Initial state
 const initialState = {
-  valuename: ""
+  valuename: "",
+  valuelastname: ""
 };
 
 // Reducer
@@ -12,7 +13,8 @@ const reducer = (state = initialState, action) => {
     case "UPDATE_INPUT_VALUE":
       return {
         ...state,
-        valuename: action.valuename
+        valuename: action.valuename,
+        valuelastname: action.valuelastname
       };
     default:
       return state;

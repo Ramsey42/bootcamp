@@ -9,6 +9,7 @@ import EmailLogo from '../../assets/images/email.png';
 import MobileLogo from '../../assets/images/mobile.png';
 import StarLogo from '../../assets/images/star.png';
 
+
 import Experience from "../Experience/Experience";
 import './Genreal.css';
 
@@ -46,6 +47,8 @@ const clearLocalStorage = () => {
 
       }, [valuename]);
  
+
+
       function handleChangeName(event) {
         setValuename(event.target.value);
         dispatch({ type: 'UPDATE_INPUT_VALUE', valuename: event.target.value });
@@ -74,6 +77,7 @@ const clearLocalStorage = () => {
  
       function handleChangeLastname(event) {
         setValuelastname(event.target.value);
+        dispatch({ type: 'UPDATE_INPUT_VALUE', valuelastname: event.target.value });
 
 
         if (!event.target.value) {
@@ -289,5 +293,7 @@ if(!event.target.value){
         </div>
     )
 }
+
+
 
 export default General;

@@ -1,0 +1,469 @@
+@font-face {
+    font-family: "Helvetica Neue";
+    src: url("../../assets/font/HelveticaNeue.ttc");
+   
+  }
+.education-container{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    width: 1920px;
+    height: 1080px;
+}
+.education-left {
+    height: 100%;
+    width: 1098px;
+    background-color: #474747;
+}
+
+.education-right {
+    height: 100%;
+    width: 822px;
+    background-color: #FFFFFF;
+}
+.education-header {
+position: absolute;
+width: 190px;
+height: 29px;
+left: 149px;
+top: 47px;
+
+font-family: 'Helvetica Neue';
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+line-height: 29px;
+
+/* off black */
+
+color: #1A1A1A;
+}
+.education-page {
+
+    position: absolute;
+    width: 29px;
+    height: 24px;
+    left: 920px;
+    top: 49px;
+    
+    font-family: 'Helvetica Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    /* identical to box height */
+    
+    text-align: right;
+    
+    /* off black */
+    
+    color: #1A1A1A;
+    }
+    .education-hr {
+    position: absolute;
+    width: 798px;
+    height: 0px;
+    left: 150px;
+    top: 88px;
+    
+    /* off black */
+    
+    border: 1px solid #1A1A1A;
+    }
+    .education-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 24px;
+        gap: 8px;
+        
+        position: absolute;
+        width: 846px;
+        height: 125px;
+        left: calc(50% - 846px/2 - 411px);
+        top: 157px;
+        
+        }
+        .education-label {
+        width: 798px;
+        height: 21px;
+        
+        font-family: 'Helvetica Neue';
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 21px;
+        /* identical to box height, or 131% */
+        
+        display: flex;
+        align-items: center;
+        
+        color: #000000;
+        
+        
+        /* Inside auto layout */
+        
+        flex: none;
+        order: 0;
+        align-self: stretch;
+        flex-grow: 0;
+        }
+        
+        .education-input {
+            box-sizing: border-box;
+        
+            width: 798px;
+            height: 48px;
+            
+            background: #FFFFFF;
+            border: 1px solid #BCBCBC;
+            border-radius: 4px;
+            padding-left: 16px;
+            /* Inside auto layout */
+            
+            flex: none;
+            order: 1;
+            align-self: stretch;
+            flex-grow: 0;
+            font-family: 'Helvetica Neue';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 21px;
+            /* identical to box height, or 131% */
+            
+            display: flex;
+            align-items: center;
+            
+            color: rgba(0, 0, 0, 0.6);
+            
+        }
+        .education-hint {
+        top: 93px;
+        left: 24px;
+        width: 798px;
+        height: 21px;
+        
+        font-family: 'Helvetica Neue';
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 21px;
+        /* identical to box height, or 150% */
+        
+        display: flex;
+        align-items: center;
+        
+        /* შავი/500 */
+        
+        color: #2E2E2E;
+        
+        
+        /* Inside auto layout */
+        
+        flex: none;
+        order: 2;
+        align-self: stretch;
+        flex-grow: 0;
+        
+        }
+.degree-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 24px;
+    gap: 8px;
+    
+    position: absolute;
+    width: 419px;
+    height: 125px;
+    left: calc(50% - 419px/2 - 624.5px);
+    top: 294px;
+    
+    
+}
+.degree-label {
+    width: 371px;
+height: 21px;
+
+font-family: 'Helvetica Neue';
+font-style: normal;
+font-weight: bold;
+font-size: 16px;
+line-height: 21px;
+/* identical to box height, or 131% */
+
+display: flex;
+align-items: center;
+
+color: #000000;
+
+}
+.degree-input {
+    
+    box-sizing: border-box;
+
+    width: 371px;
+    height: 48px;
+    
+    background: #FFFFFF;
+    border: 1px solid #BCBCBC;
+    border-radius: 4px;
+    
+    /* Inside auto layout */
+    
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+select option {
+    font-family: 'Helvetica Neue';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 21px;
+/* identical to box height, or 131% */
+
+display: flex;
+align-items: center;
+
+/* off black */
+
+color: #1A1A1A;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+.graduate-wrapper{
+    display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 8px 24px;
+gap: 8px;
+
+position: absolute;
+width: 419px;
+height: 93px;
+left: calc(50% - 419px/2 - 197.5px);
+top: 294px;
+
+
+}
+.graduate-label {
+    width: 371px;
+height: 21px;
+
+font-family: 'Helvetica Neue';
+font-style: normal;
+font-weight: bold;
+font-size: 16px;
+line-height: 21px;
+/* identical to box height, or 131% */
+
+display: flex;
+align-items: center;
+
+color: #000000;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+}
+.graduate-input{
+    box-sizing: border-box;
+
+width: 371px;
+height: 48px;
+
+background: #FFFFFF;
+border: 1px solid #BCBCBC;
+border-radius: 4px;
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+}
+.aducation-discription-wrapper {
+    display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 8px 24px;
+gap: 8px;
+
+position: absolute;
+width: 846px;
+height: 224px;
+left: calc(50% - 846px/2 - 411px);
+top: 405px;
+
+}
+.aducation-discription-label{
+    width: 798px;
+height: 21px;
+
+font-family: 'Helvetica Neue';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 21px;
+/* identical to box height, or 131% */
+
+display: flex;
+align-items: center;
+
+color: #000000;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+}
+.aducation-discription-input{
+    box-sizing: border-box;
+
+    width: 798px;
+    height: 179px;
+    
+    background: #FFFFFF;
+    border: 1px solid #BCBCBC;
+    border-radius: 4px;
+    
+    /* Inside auto layout */
+    
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 1;
+}
+.add-aducation {
+    display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 18px 60px;
+gap: 20px;
+
+position: absolute;
+width: 289px;
+height: 48px;
+left: calc(50% - 289px/2 - 665.5px);
+top: 719px;
+border-color: #62A1EB;
+background: #62A1EB;
+border-radius: 4px;
+}
+.add-aducation-content{
+    
+width: 244px;
+height: 20px;
+
+font-family: 'Helvetica Neue';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+
+margin-left: -35px;
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+.previous-page2 {
+    display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 18px 60px;
+gap: 20px;
+
+position: absolute;
+width: 113px;
+height: 48px;
+left: 149px;
+bottom: 65px;
+
+background: #6B40E3;
+border-radius: 4px;
+}
+.previous-page2-content {
+    width: 43px;
+height: 20px;
+
+font-family: 'Helvetica Neue';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+
+letter-spacing: 0.08em;
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+margin-left: -20px;
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+.submit {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 18px 60px;
+gap: 20px;
+
+position: absolute;
+width: 151px;
+height: 48px;
+right: 972px;
+bottom: 65px;
+
+background: #6B40E3;
+border-radius: 4px;
+}
+.submit-content {
+    width: 112px;
+height: 20px;
+
+font-family: 'Helvetica Neue';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+
+letter-spacing: 0.08em;
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+margin-left: -35px;
+flex: none;
+order: 0;
+flex-grow: 0;
+}

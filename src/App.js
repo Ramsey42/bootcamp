@@ -8,6 +8,8 @@ import store from './Redux/store';
 import './App.css';
 import General from './components/General/General';
 import Experience from './components/Experience/Experience';
+import Education from './components/Education/Education';
+import Success from './components/Success/Success';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
 <Route  path="/" element={<Heropage/>} />
 <Route  path="/info" element={<General/>} />
 <Route  path="/experience" element={<Experience/>} />
+<Route path="/education" element={<Education/>} />
+<Route path="/success" element={<Success/>} />
 </Routes>
 </Provider>
 </div>

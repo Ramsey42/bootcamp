@@ -1,0 +1,89 @@
+.return-aducationtitle{
+    position: absolute;
+width: 115px;
+height: 22px;
+left: 1180px;
+top: 748px;
+
+font-family: 'Helvetica Neue';
+font-style: normal;
+font-weight: 700;
+font-size: 18px;
+line-height: 22px;
+/* identical to box height */
+
+
+color: #F93B1D;
+}
+.return-degreedegree{
+position: absolute;
+width: 349px;
+height: 20px;
+left: 1180px;
+top: 795px;
+
+font-family: 'Helvetica Neue';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+
+
+/* off black */
+
+color: #1A1A1A;
+}
+.return-degree{
+position: absolute;
+width: 81px;
+height: 20px;
+left: 1540px;
+top: 795px;
+
+font-family: 'Helvetica Neue';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+
+
+/* off black */
+
+color: #1A1A1A;
+}
+.return-graduationdate{
+    position: absolute;
+width: 84px;
+height: 19px;
+left: 1180px;
+top: 832px;
+
+font-family: 'Helvetica Neue';
+font-style: italic;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+
+color: #919191
+}
+.return-aducation-description{
+    position: absolute;
+width: 662px;
+height: 88px;
+left: 1180px;
+top: 857px;
+
+font-family: 'Helvetica Neue';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 22px;
+/* or 138% */
+
+text-transform: lowercase;
+
+color: #000000;
+
+}
