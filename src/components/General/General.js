@@ -1,299 +1,365 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 // import { useHistory } from 'react';
 //assets
-import Vector from '../../assets/images/Vector.png';
-import Ellipse from '../../assets/images/Ellipse.png';
-import EmailLogo from '../../assets/images/email.png';
-import MobileLogo from '../../assets/images/mobile.png';
-import StarLogo from '../../assets/images/star.png';
-
+import Vector from "../../assets/images/Vector.png";
+import Ellipse from "../../assets/images/Ellipse.png";
+import EmailLogo from "../../assets/images/email.png";
+import MobileLogo from "../../assets/images/mobile.png";
+import StarLogo from "../../assets/images/star.png";
 
 import Experience from "../Experience/Experience";
-import './Genreal.css';
+import "./Genreal.css";
+import { addBasicInfo } from "../../Redux/features/information/informationSlice";
 
 const General = () => {
-  const dispatch = useDispatch();
-  // const history = useHistory();
-//cleas localstorage
-const clearLocalStorage = () => {
-  localStorage.clear();
-};
+  const dispatch = useDispatch()
+    // const history = useHistory();
+    //cleas localstorage
+    const clearLocalStorage = () => {
+        localStorage.clear();
+    };
 
+    // validation states
+    //name
+    const [error, setError] = useState(null);
+    const [lastnameError, setLastnameError] = useState(null);
+    const [emailError, setEmailError] = useState(null);
+    const [mobileError, setMobileError] = useState(null);
 
-      // validation states
-      //name
-      const [error, setError] = useState(null);
-      const [lastnameError, setLastnameError] = useState(null);
-      const [emailError, setEmailError] = useState(null);
-      const [mobileError, setMobileError] = useState(null);
-
-      // in case of any errors hide a next button
-      function checkErrors() {
-        if (!error && !lastnameError && !emailError && !mobileError) {
-          return <Link to="/experience"><button className="submit-personal-info"><p className="submit-personal-info-content">შემდეგი</p></button></Link>;
+    // in case of any errors hide a next button
+    function checkErrors() {
+      if (!error && !lastnameError && !emailError && !mobileError) {
+        // item to be added to redux
+            const payload = {
+              name : valuename,
+              last_name: valuelastname,
+              photo: image, 
+              about_me: valueabout, 
+              email: valueemail, 
+              mobile_number: valuemobile
+            }
+            console.log("payload",payload)
+            dispatch(addBasicInfo(payload))
+            return (
+                <Link to="/experience">
+                    <button className="submit-personal-info">
+                        <p className="submit-personal-info-content">შემდეგი</p>
+                    </button>
+                </Link>
+            );
         }
-      }
-      // localstorage
-      //name
-      const [valuename, setValuename] = useState(
+    }
+    // localstorage
+    //name
+    const [valuename, setValuename] = useState(
         localStorage.getItem("inputFieldNameValue") || ""
-      );
-    
-      useEffect(() => {
+    );
+
+    useEffect(() => {
         localStorage.setItem("inputFieldNameValue", valuename);
         // history.push(`/experience/${valuename}`);
+    }, [valuename]);
 
-      }, [valuename]);
- 
-
-
-      function handleChangeName(event) {
+    function handleChangeName(event) {
         setValuename(event.target.value);
-        dispatch({ type: 'UPDATE_INPUT_VALUE', valuename: event.target.value });
+        dispatch({ type: "UPDATE_INPUT_VALUE", valuename: event.target.value });
 
         if (!event.target.value) {
-          setError('ველის შევსება სავალდებულოა');
+            setError("ველის შევსება სავალდებულოა");
         } else if (event.target.value.length < 2) {
-          setError('გთხოვთ შეიყვანოთ მინიმუმ 2 სიმბოლო');
+            setError("გთხოვთ შეიყვანოთ მინიმუმ 2 სიმბოლო");
         } else if (!/^[ა-ჰ]+$/.test(event.target.value)) {
-          setError('შეიყვანეთ მხოლოდ ქართული სიმბოლოები');
+            setError("შეიყვანეთ მხოლოდ ქართული სიმბოლოები");
         } else {
-          setError(null);
-          
+            setError(null);
         }
-        
-      }
+    }
 
-      // lastname
-      const [valuelastname, setValuelastname] = useState(
+    // lastname
+    const [valuelastname, setValuelastname] = useState(
         localStorage.getItem("inputFieldLastnameValue") || ""
-      );
-    
-      useEffect(() => {
-        localStorage.setItem("inputFieldLastnameValue", valuelastname);
-      }, [valuelastname]);
- 
-      function handleChangeLastname(event) {
-        setValuelastname(event.target.value);
-        dispatch({ type: 'UPDATE_INPUT_VALUE', valuelastname: event.target.value });
+    );
 
+    useEffect(() => {
+        localStorage.setItem("inputFieldLastnameValue", valuelastname);
+    }, [valuelastname]);
+
+    function handleChangeLastname(event) {
+        setValuelastname(event.target.value);
+        dispatch({
+            type: "UPDATE_INPUT_VALUE",
+            valuelastname: event.target.value,
+        });
 
         if (!event.target.value) {
-          setLastnameError('ველის შევსება სავალდებულოა');
+            setLastnameError("ველის შევსება სავალდებულოა");
         } else if (event.target.value.length < 2) {
-          setLastnameError('გთხოვთ შეიყვანოთ მინიმუმ 2 სიმბოლო');
+            setLastnameError("გთხოვთ შეიყვანოთ მინიმუმ 2 სიმბოლო");
         } else if (!/^[ა-ჰ]+$/.test(event.target.value)) {
-          setLastnameError('შეიყვანეთ მხოლოდ ქართული სიმბოლოები');
+            setLastnameError("შეიყვანეთ მხოლოდ ქართული სიმბოლოები");
         } else {
-          setLastnameError(null);
+            setLastnameError(null);
         }
-      }
+    }
 
-      //about
-      const [valueabout, setValueabout] = useState(
+    //about
+    const [valueabout, setValueabout] = useState(
         localStorage.getItem("inputFieldAboutValue") || ""
-      );
-    
-      useEffect(() => {
+    );
+
+    useEffect(() => {
         localStorage.setItem("inputFieldAboutValue", valueabout);
-      }, [valueabout]);
- 
-      function handleChangeAbout(event) {
+    }, [valueabout]);
+
+    function handleChangeAbout(event) {
         setValueabout(event.target.value);
-      }
+    }
 
-      //email
+    //email
 
-      const [valueemail, setValueemail] = useState(
+    const [valueemail, setValueemail] = useState(
         localStorage.getItem("inputFieldEmailValue") || ""
-      );
-    
-      useEffect(() => {
+    );
+
+    useEffect(() => {
         localStorage.setItem("inputFieldEmailValue", valueemail);
-      }, [valueemail]);
- 
-      function handleChangeEmail(event) {
+    }, [valueemail]);
+
+    function handleChangeEmail(event) {
         setValueemail(event.target.value);
 
-         // Validation logic
- 
-if(!event.target.value){
-  setEmailError('ველის შევსება სავალდებულოა');
-}   else if (!event.target.value.endsWith('@redberry.ge')) {
-    setEmailError('ელ.ფოსტა უნდა მთავრდებოდეს @redberry.ge -თი');
-  } else {
-    setEmailError(null);
-  }
-      }
+        // Validation logic
 
-      //mobile
+        if (!event.target.value) {
+            setEmailError("ველის შევსება სავალდებულოა");
+        } else if (!event.target.value.endsWith("@redberry.ge")) {
+            setEmailError("ელ.ფოსტა უნდა მთავრდებოდეს @redberry.ge -თი");
+        } else {
+            setEmailError(null);
+        }
+    }
 
-      const [valuemobile, setValuemobile] = useState(
+    //mobile
+
+    const [valuemobile, setValuemobile] = useState(
         localStorage.getItem("inputFieldMobileValue") || ""
-      );
-    
-      useEffect(() => {
+    );
+
+    useEffect(() => {
         localStorage.setItem("inputFieldMobileValue", valuemobile);
-      }, [valuemobile]);
- 
-      function handleChangeMobile(event) {
+    }, [valuemobile]);
+
+    function handleChangeMobile(event) {
         setValuemobile(event.target.value);
 
-          // Validation logic for Georgian mobile number
-    const mobileNumberRegex = /^(\+?995|0)?(5[0123456789]\d{7})$/;
-   if(!event.target.value){
-      setMobileError('ველის შევსება სავალდებულოა');
-   } else if (!mobileNumberRegex.test(event.target.value)) {
-      setMobileError('მაგ.: +995 5xx xxx xxx ნუ გამოიყენებთ WhiteSpace-ს');
-    } else {
-      setMobileError(null);
+        // Validation logic for Georgian mobile number
+        const mobileNumberRegex = /^(\+?995|0)?(5[0123456789]\d{7})$/;
+        if (!event.target.value) {
+            setMobileError("ველის შევსება სავალდებულოა");
+        } else if (!mobileNumberRegex.test(event.target.value)) {
+            setMobileError(
+                "მაგ.: +995 5xx xxx xxx ნუ გამოიყენებთ WhiteSpace-ს"
+            );
+        } else {
+            setMobileError(null);
+        }
     }
-      }
 
-      //fileUploader
-      const [image, setImage] = useState(
+    //fileUploader
+    const [image, setImage] = useState(
         localStorage.getItem("uploadedImage") || null
-      );
-      useEffect(() => {
+    );
+    useEffect(() => {
         localStorage.setItem("uploadedImage", image);
-      }, [image]);
-      function handleChangeUploader(event) {
+    }, [image]);
+    function handleChangeUploader(event) {
         const reader = new FileReader();
         reader.onload = (e) => {
-          setImage(e.target.result);
+            setImage(e.target.result);
         };
         reader.readAsDataURL(event.target.files[0]);
-      };
+    }
 
+    return (
+        <div style={{ width: "100%", height: "100%" }}>
+            <div className="left-div">
+                <img className="container" alt="" src={Ellipse}></img>
+                <Link to="/">
+                    <button
+                        className="vector"
+                        style={{ zIndex: "-1" }}
+                        onClick={clearLocalStorage}
+                    >
+                        <img alt="" className="vector" src={Vector}></img>
+                    </button>
+                </Link>
 
+                <h1 className="general-header">პირადი ინფო</h1>
 
+                <p className="general-pages">1/3</p>
 
-    return(
-        <div style={{width:"100%", height:"100%"}}>
-        <div className="left-div" >
-              <img className="container" alt="" src={Ellipse}></img>
-              <Link to="/">
-             <button className="vector" style={{zIndex:"-1"}}  onClick={clearLocalStorage}>
-          <img  alt=''  className="vector" src={Vector}></img>
-          </button> 
-          </Link>
-        
-            <h1 className="general-header">პირადი ინფო</h1>
-            
-            <p className="general-pages">1/3</p>
-            
+                <hr className="general-hr"></hr>
 
-            <hr className="general-hr"></hr>
-            
-            
-<div className="parent-name">
+                <div className="parent-name">
+                    <label className="name-label" for="name">
+                        სახელი
+                    </label>
 
-            <label className="name-label" for="name">სახელი</label>
+                    <div className="frame">
+                        <input
+                            className="input-name"
+                            value={valuename}
+                            onChange={(event) => {
+                                handleChangeName(event);
+                            }}
+                            type="text"
+                            id="name"
+                            name="name"
+                        />
+                    </div>
+                    {error ? (
+                        <div className="validation" style={{ color: "red" }}>
+                            {error}
+                        </div>
+                    ) : (
+                        <p className="validation">
+                            მინიმუმ 2 ასო, ქართლი ასოები
+                        </p>
+                    )}
+                </div>
 
-           <div className="frame">
-            
-           <input className="input-name" value={valuename} 
-           
-           onChange={(event) => {
-        handleChangeName(event);
-      }} type="text" id="name" name="name"/>
-      
-           
-           </div>
-           {error ? <div className="validation" style={{ color: 'red' }}>{error}</div> : <p className="validation">მინიმუმ 2 ასო, ქართლი ასოები</p>}
-              
-           
-           
-           </div>
+                {/* lastname input  */}
+                <div className="parent-lastname">
+                    <label className="lastname-label" for="name">
+                        გვარი
+                    </label>
 
-{/* lastname input  */}
-           <div className="parent-lastname">
-            
-    
-            <label className="lastname-label" for="name">გვარი</label>
+                    <div className="frame-lastname">
+                        <input
+                            className="input-lastname"
+                            value={valuelastname}
+                            required
+                            onChange={(event) => {
+                                handleChangeLastname(event);
+                            }}
+                            type="text"
+                            id="name"
+                            name="name"
+                        />
+                    </div>
+                    {lastnameError ? (
+                        <div className="validation" style={{ color: "red" }}>
+                            {lastnameError}
+                        </div>
+                    ) : (
+                        <p className="validation-lastname">
+                            მინიმუმ 2 ასო, ქართლი ასოები
+                        </p>
+                    )}
+                </div>
 
-           <div className="frame-lastname">
-            
-           <input className="input-lastname" value={valuelastname}
-           required
-           onChange={(event) => {
-        handleChangeLastname(event);
-            }} type="text" id="name" name="name"/>
-           
-           </div>
-           {lastnameError ? <div className="validation" style={{ color: 'red' }}>{lastnameError}</div> :  <p className="validation-lastname">მინიმუმ 2 ასო, ქართლი ასოები</p>}
-           </div>
+                <p className="upload-title">პირადი ფოტოს ატვირთვა</p>
+                <div className="upload">
+                    <input
+                        required
+                        type="file"
+                        id="file-input"
+                        onChange={handleChangeUploader}
+                    />
+                    <label htmlFor="file-input">ატვირთვა</label>
+                </div>
+                {/* about */}
+                <div className="about-container">
+                    <p className="about-title">ჩემ შესახებ (არასავალდებულო)</p>
+                    <textarea
+                        value={valueabout}
+                        onChange={(event) => {
+                            handleChangeAbout(event);
+                        }}
+                        className="about-field"
+                    ></textarea>
+                </div>
 
-           <p className="upload-title">პირადი ფოტოს ატვირთვა</p>
-         <div className="upload">
-           <input  required type="file" id="file-input" onChange={handleChangeUploader} />
-           <label htmlFor="file-input">ატვირთვა</label>
-           
-           </div>
-          {/* about */}
-           <div className="about-container">
-        <p className="about-title">ჩემ შესახებ (არასავალდებულო)</p>
-        <textarea  value={valueabout} onChange={(event) => {
-        handleChangeAbout(event);
-            }} className="about-field">
+                {/* email */}
+                <div className="email-container">
+                    <p className="email-title">ელ.ფოსტა</p>
+                    <textarea
+                        value={valueemail}
+                        required
+                        pattern=".+@redberry.ge$"
+                        title="Email must end with @redberry.ge"
+                        onChange={(event) => {
+                            handleChangeEmail(event);
+                        }}
+                        className="email-field"
+                    ></textarea>
+                    {emailError ? (
+                        <div className="validation" style={{ color: "red" }}>
+                            {emailError}
+                        </div>
+                    ) : (
+                        <p className="email-validation">
+                            უნდა მთავრდებოდეს @redberry.ge-ით
+                        </p>
+                    )}
+                </div>
 
-        </textarea>
-           </div>
+                {/* mobile */}
+                <div className="mobile-container">
+                    <p className="mobile-title">მობილურის ნომერი</p>
+                    <textarea
+                        value={valuemobile}
+                        required
+                        onChange={(event) => {
+                            handleChangeMobile(event);
+                        }}
+                        className="mobile-field"
+                    ></textarea>
+                    {mobileError ? (
+                        <div className="validation" style={{ color: "red" }}>
+                            {mobileError}
+                        </div>
+                    ) : (
+                        <p className="mobile-validation">
+                            უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს
+                        </p>
+                    )}
+                </div>
+                {checkErrors()}
+            </div>
 
-           {/* email */}
-           <div className="email-container">
-        <p className="email-title">ელ.ფოსტა</p>
-        <textarea value={valueemail} 
-          required
-          pattern=".+@redberry.ge$"
-          title="Email must end with @redberry.ge"
-        onChange={(event) => {
-        handleChangeEmail(event);
-            }} className="email-field">
+            <div className="right-div">
+                <h1 className="output-name">{valuename}</h1>
 
-        </textarea>
- {emailError ? <div className="validation" style={{ color: 'red' }}>{emailError}</div> :  <p className="email-validation">უნდა მთავრდებოდეს @redberry.ge-ით</p>}
-        
-           </div>
+                <h1 className="output-lastname">{valuelastname}</h1>
+                {image && (
+                    <img className="output-image" src={image} alt="Uploaded" />
+                )}
 
-           {/* mobile */}
-           <div className="mobile-container">
-        <p className="mobile-title">მობილურის ნომერი</p>
-        <textarea value={valuemobile}
-        required
-        onChange={(event) => {
-        handleChangeMobile(event);
-            }} className="mobile-field">
-
-        </textarea>
-        {mobileError ? <div className="validation" style={{ color: 'red' }}>{mobileError}</div> : <p className="mobile-validation">უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს</p>}
-
-        
-           </div>
-           {checkErrors()}
+                <p className="output-email">
+                    <img
+                        style={{ position: "absolute", marginLeft: "-20px" }}
+                        alt=""
+                        src={EmailLogo}
+                    />
+                    {valueemail}
+                </p>
+                <p className="output-mobile">
+                    <img
+                        style={{ position: "absolute", marginLeft: "-20px" }}
+                        alt=""
+                        src={MobileLogo}
+                    />
+                    {valuemobile}
+                </p>
+                <h1 className="about-output-title">ჩემს შესახებ</h1>
+                <p className="about-output">{valueabout}</p>
+            </div>
+            <img alt="" className="star-logo" src={StarLogo}></img>
         </div>
-
-
-        <div className="right-div">
-<h1 className="output-name" >{valuename}</h1>
-
-<h1 className="output-lastname">{valuelastname}</h1>
-{image && <img className="output-image" src={image} alt="Uploaded" />}
-
-<p className="output-email"><img style={{position:"absolute", marginLeft:"-20px"}}  alt="" src={EmailLogo}/>{valueemail}</p>
-<p className="output-mobile"><img style={{position:"absolute", marginLeft:"-20px"}}  alt="" src={MobileLogo}/>{valuemobile}</p>
-<h1 className="about-output-title">ჩემს შესახებ</h1>
-<p className="about-output">{valueabout}</p>
-
-        </div>
-        <img alt='' className="star-logo" src={StarLogo}></img>
-   
-        </div>
-    )
-}
-
-
+    );
+};
 
 export default General;

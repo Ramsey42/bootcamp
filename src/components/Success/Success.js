@@ -1,58 +1,75 @@
 import React from "react";
-import './Success.css';
+import "./Success.css";
 
 //assets
 
-import MobileLogo from '../../assets/images/mobile.png'
-import EmailLogo from '../../assets/images/email.png';
-import Star from '../../assets/images/star.png';
-import Rect from '../../assets/images/Rect.png';
-import VectorLogo from '../../assets/images/Vector.png';
-import EllipseLogo from '../../assets/images/Ellipse.png';
+import MobileLogo from "../../assets/images/mobile.png";
+import EmailLogo from "../../assets/images/email.png";
+import Star from "../../assets/images/star.png";
+import Rect from "../../assets/images/Rect.png";
+import VectorLogo from "../../assets/images/Vector.png";
+import EllipseLogo from "../../assets/images/Ellipse.png";
+import { useSelector } from "react-redux";
 
 const Success = () => {
+    const {
+        name,
+        last_name,
+        photo,
+        about_me,
+        email,
+        mobile_number,
+        position,
+        the_employer,
+        start_date,
+        end_date,
+        description,
+        school,
+        degree,
+        graduation_year,
+        school_description,
+    } = useSelector((state) => state.information);
+
     return (
         <div className="success-wrapper">
-        <img alt="" className="success-ellipse" src={EllipseLogo}></img>
-        <img alt="" className="success-vector" src={VectorLogo}></img>
-        <div className="cv-wrapper">
-       
-            <div className="cv-name">ანზორ</div>
-            <div className="cv-lastname">მუმლაძე</div>
-            <img alt='' src={EmailLogo} className='cv-emaillogo'></img>
-            <div className="cv-email">anzorr666@redberry.ge</div>
-            <img alt='' src={MobileLogo} className='cv-mobilelogo'></img>
-            <div className="cv-mobile">+99511111111</div>
+            <img alt="" className="success-ellipse" src={EllipseLogo}></img>
+            <img alt="" className="success-vector" src={VectorLogo}></img>
+            <div className="cv-wrapper">
+                <div className="cv-name">{name}</div>
+                <div className="cv-lastname">{last_name}</div>
+                <img alt="" src={EmailLogo} className="cv-emaillogo"></img>
+                <div className="cv-email">{email}</div>
+                <img alt="" src={MobileLogo} className="cv-mobilelogo"></img>
+                <div className="cv-mobile">{mobile_number}</div>
 
-            <img alt='' src={Rect} className='cv-image'></img>
+                <img alt="" src={photo} className="cv-image"></img>
 
-            <h1 className="cv-about-title">ჩემ შესახებ</h1>
-            <p className="cv-about-discription">ძალიან მიყვარს დიზაინის კეთება. დილით ადრე რომ ავდგები 
-            გამამხნევებელი ვარჯიშების მაგიერ დიზაინს ვაკეთებ.</p>
-            <hr className="cv-hr1"></hr>
-            <h1 className="cv-experience-title">გამოცდილება</h1>
-            <h1 className="cv-position">React Native Developer,</h1>
-            <h1  className="cv-company">Microsoft</h1>
-            <h1 className="cv-date">2020=09-23 - 2020-09-23</h1>
-            <p className="cv-experience-discription">Experienced Javascript Native Developer with 5 years in the industry.
-                 proficient withreact. Used problem-solving aptitude to
-                 encahge application performance by 14%.created data visualisation tools and integrated designs</p>
-                 <hr className="cv-hr2"></hr>
-            <h1 className="cv-education-title">განათლება</h1>
-            <h1 className="cv-university">წმ. სასწავლებელი</h1>
-            <h1 className="cv-education-degree">სტუდენტი</h1>
-            <h1 className="cv-education-date">2020-02-02</h1>
-            <p className="cv-education-discription"> ვსწავლობდი გულმოდგინეთ. მყავდა ფრიადები.    
-         რაც შემეძლო — ვქენი. კომპიუტერები მიყვარდა. ვიჯექი ჩემთვის, ვაკაკუნებდი ამ კლავიშებზე. მეუნებოდნენ — დაჯექი, წაიკითხე რამე,
-             რას აკაკუნებ, დრო მოვა და ჩაგიკაკუნებსო. აჰა, მოვიდა დრო და ვერა ვარ დეველოპერი?</p>
-       <img className="cv-star" alt='' src={Star}></img>
-        </div>
+                <h1 className="cv-about-title">ჩემ შესახებ</h1>
+                <p className="cv-about-discription">{about_me}</p>
+                <hr className="cv-hr1"></hr>
+                <h1 className="cv-experience-title">გამოცდილება</h1>
+                <h1 className="cv-position">{position},</h1>
+                <h1 className="cv-company">{the_employer}</h1>
+                <h1 className="cv-date">
+                    {start_date} - {end_date}
+                </h1>
+                <p className="cv-experience-discription">{description}</p>
+                <hr className="cv-hr2"></hr>
+                <h1 className="cv-education-title">განათლება</h1>
+                <h1 className="cv-university">წმ. {school}</h1>
+                <h1 className="cv-education-degree">{degree}</h1>
+                <h1 className="cv-education-date">{graduation_year}</h1>
+                <p className="cv-education-discription">{school_description}</p>
+                <img className="cv-star" alt="" src={Star}></img>
+            </div>
 
-        <div className="success-message">
-            <h1 className="success-message-content">რეზიუმე წარმატებით გაიგზავნა</h1>
+            <div className="success-message">
+                <h1 className="success-message-content">
+                    რეზიუმე წარმატებით გაიგზავნა
+                </h1>
+            </div>
         </div>
-        </div>
-    )
-}
+    );
+};
 
 export default Success;
