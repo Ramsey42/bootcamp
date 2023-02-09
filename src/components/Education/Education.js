@@ -9,7 +9,7 @@ import Vector from "../../assets/images/Vector.png";
 
 import { addSchoolInformation } from "../../Redux/features/information/informationSlice";
 
-const Education = () => {
+const Education = ({history}) => {
     const allInformation = useSelector((state) => state.information);
     const dispatch = useDispatch();
 
@@ -41,7 +41,7 @@ const Education = () => {
             dispatch(addSchoolInformation(payload));
             return (
                 <Link to="/success">
-                    <button className="submit">
+                    <button onClick={handleClick} type='submit' className="submit">
                         <p className="submit-content">დასრულება</p>
                     </button>
                 </Link>
@@ -140,17 +140,19 @@ const Education = () => {
             valuegraduate: event.target.value,
         });
 
-        // if (!event.target.value) {
-        //    setValueeducation('ველის შევსება სავალდებულოა');
-        // } else if (event.target.value.length < 2) {
-        //    setValueeducation('გთხოვთ შეიყვანოთ მინიმუმ 2 სიმბოლო');
-        // } else if (!/^[ა-ჰ]+$/.test(event.target.value)) {
-        //    setValueeducation('შეიყვანეთ მხოლოდ ქართული სიმბოლოები');
-        // } else {
-        //    setValueeducation(null);
-
-        // }
     }
+
+    const handleClick = (event) => {
+        
+        if (valueeducation.trim().length > 1 && valuedegree.trim().length > 0 && valueedudiscription.trim().length > 0
+          && valuegraduate.trim().length > 0
+        ) {
+          history.push("/experience");
+        } else {
+            event.preventDefault();
+          
+        }
+      };
 
     return (
         <div className="education-container">

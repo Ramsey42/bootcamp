@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
 // import { useHistory } from 'react';
 //assets
@@ -13,7 +13,8 @@ import Experience from "../Experience/Experience";
 import "./Genreal.css";
 import { addBasicInfo } from "../../Redux/features/information/informationSlice";
 
-const General = () => {
+const General = ({history}) => {
+
   const dispatch = useDispatch()
     // const history = useHistory();
     //cleas localstorage
@@ -27,6 +28,8 @@ const General = () => {
     const [lastnameError, setLastnameError] = useState(null);
     const [emailError, setEmailError] = useState(null);
     const [mobileError, setMobileError] = useState(null);
+
+
 
     // in case of any errors hide a next button
     function checkErrors() {
@@ -44,7 +47,7 @@ const General = () => {
             dispatch(addBasicInfo(payload))
             return (
                 <Link to="/experience">
-                    <button className="submit-personal-info">
+                    <button onClick={handleClick} className="submit-personal-info">
                         <p className="submit-personal-info-content">შემდეგი</p>
                     </button>
                 </Link>
@@ -61,6 +64,9 @@ const General = () => {
         localStorage.setItem("inputFieldNameValue", valuename);
         // history.push(`/experience/${valuename}`);
     }, [valuename]);
+
+
+
 
     function handleChangeName(event) {
         setValuename(event.target.value);
@@ -181,6 +187,18 @@ const General = () => {
         };
         reader.readAsDataURL(event.target.files[0]);
     }
+        //useHistory, check if inputs are not empty
+        const handleClick = (event) => {
+        
+            if (valuename.trim().length > 1 && valuelastname.trim().length > 1 && valueemail.endsWith("@redberry.ge")
+            && /^(\+9955[0-9]{8})$/.test(valuemobile) && image != null
+            ) {
+              history.push("/experience");
+            } else {
+                event.preventDefault();
+              
+            }
+          };
 
     return (
         <div className="general-container">

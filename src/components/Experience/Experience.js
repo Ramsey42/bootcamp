@@ -16,7 +16,7 @@ import General from "../General/General";
 import { useSelector } from "react-redux";
 import { addJobInformation } from "../../Redux/features/information/informationSlice";
 
-const Experience = ({}) => {
+const Experience = ({history}) => {
     const allInformation = useSelector((state) => state.information);
     const dispatch = useDispatch();
     //cleas localstorage
@@ -51,7 +51,7 @@ const Experience = ({}) => {
 
             return (
                 <Link to="/education">
-                    <button className="submit-personal-info">
+                    <button onClick={handleClick} className="submit-personal-info">
                         <p className="submit-personal-info-content">შემდეგი</p>
                     </button>
                 </Link>
@@ -171,9 +171,18 @@ const Experience = ({}) => {
             setDiscriptionError(null);
         }
     }
+    const handleClick = (event) => {
+        
+        if (valueposition.trim().length > 1 && valueemployee.trim().length > 1 && valuestartdate.trim().length > 0
+          && valueenddate.trim().length > 0 && valuediscription.trim().length > 0
+        ) {
+          history.push("/experience");
+        } else {
+            event.preventDefault();
+          
+        }
+      };
 
-    // const valuename = useSelector((state) => state.valuename);
-    // const valuelastname = useSelector((state) => state.valuelastname);
 
     return (
         <div className="experience-container">
