@@ -412,3 +412,12 @@ top: 834px;
     top: 45px;
     /* background: #FFFFFF; */
     }
+
+    .x{
+        position: absolute;
+        margin-left: 350px;
+        margin-top: -80px;
+    }
+    .visibility-hidden {
+        visibility: hidden;
+      }

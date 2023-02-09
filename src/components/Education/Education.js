@@ -6,7 +6,7 @@ import Educationprops from "./Educationprops";
 import "../Experience/Experience.css";
 //assets
 import Vector from "../../assets/images/Vector.png";
-import Ellipse from "../../assets/images/Ellipse.png";
+
 import { addSchoolInformation } from "../../Redux/features/information/informationSlice";
 
 const Education = () => {
@@ -154,11 +154,11 @@ const Education = () => {
 
     return (
         <div className="education-container">
-            <img alt="" className="experience-ellipse" src={Ellipse}></img>
+<div className="left-div">
 
             <Link to="/">
                 <button
-                    className="experience-return-button"
+                    className="education-return-button"
                     onClick={clearLocalStorage}
                 >
                     <img
@@ -273,6 +273,7 @@ const Education = () => {
                 </Link>
                 {/* <button  className='submit'><p className='submit-content'>დასრულება</p></button> */}
                 <div>{checkErrors()}</div>
+            </div>
             </div>
 
             <div className="education-right">

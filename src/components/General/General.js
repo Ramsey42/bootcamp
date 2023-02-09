@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 // import { useHistory } from 'react';
 //assets
-import Vector from "../../assets/images/Vector.png";
-import Ellipse from "../../assets/images/Ellipse.png";
+import VectorLogo from "../../assets/images/Vector.png";
+import EllipseLogo from "../../assets/images/Ellipse.png";
 import EmailLogo from "../../assets/images/email.png";
 import MobileLogo from "../../assets/images/mobile.png";
 import StarLogo from "../../assets/images/star.png";
@@ -183,19 +183,22 @@ const General = () => {
     }
 
     return (
-        <div style={{ width: "100%", height: "100%" }}>
+        <div className="general-container">
             <div className="left-div">
-                <img className="container" alt="" src={Ellipse}></img>
+           
+
                 <Link to="/">
                     <button
-                        className="vector"
-                        style={{ zIndex: "-1" }}
+                        className="general-return-button"
                         onClick={clearLocalStorage}
                     >
-                        <img alt="" className="vector" src={Vector}></img>
+                        <img
+                            alt=""
+                            className="experience-vector"
+                            src={VectorLogo}
+                        ></img>
                     </button>
                 </Link>
-
                 <h1 className="general-header">პირადი ინფო</h1>
 
                 <p className="general-pages">1/3</p>
@@ -240,7 +243,7 @@ const General = () => {
                         <input
                             className="input-lastname"
                             value={valuelastname}
-                            required
+                          
                             onChange={(event) => {
                                 handleChangeLastname(event);
                             }}
@@ -263,7 +266,7 @@ const General = () => {
                 <p className="upload-title">პირადი ფოტოს ატვირთვა</p>
                 <div className="upload">
                     <input
-                        required
+                        
                         type="file"
                         id="file-input"
                         onChange={handleChangeUploader}
@@ -309,14 +312,14 @@ const General = () => {
                 {/* mobile */}
                 <div className="mobile-container">
                     <p className="mobile-title">მობილურის ნომერი</p>
-                    <textarea
+                    <input
                         value={valuemobile}
-                        required
+                      
                         onChange={(event) => {
                             handleChangeMobile(event);
                         }}
                         className="mobile-field"
-                    ></textarea>
+                    ></input>
                     {mobileError ? (
                         <div className="validation" style={{ color: "red" }}>
                             {mobileError}
@@ -335,26 +338,30 @@ const General = () => {
 
                 <h1 className="output-lastname">{valuelastname}</h1>
                 {image && (
-                    <img className="output-image" src={image} alt="Uploaded" />
+                    <img className="return-image" src={image} alt="" />
                 )}
 
                 <p className="output-email">
-                    <img
-                        style={{ position: "absolute", marginLeft: "-20px" }}
-                        alt=""
-                        src={EmailLogo}
-                    />
+                {valueemail && (
+        <img
+          style={{ position: "absolute", marginLeft: "-20px" }}
+          alt=""
+          src={EmailLogo}
+        />
+      )}
                     {valueemail}
                 </p>
                 <p className="output-mobile">
-                    <img
-                        style={{ position: "absolute", marginLeft: "-20px" }}
-                        alt=""
-                        src={MobileLogo}
-                    />
+                {valuemobile && (
+        <img
+          style={{ position: "absolute", marginLeft: "-20px" }}
+          alt=""
+          src={MobileLogo}
+        />
+      )}
                     {valuemobile}
                 </p>
-                <h1 className="about-output-title">ჩემს შესახებ</h1>
+             {valueabout && (<h1 className="about-output-title">ჩემ შესახებ</h1>)}   
                 <p className="about-output">{valueabout}</p>
             </div>
             <img alt="" className="star-logo" src={StarLogo}></img>

@@ -3,7 +3,7 @@ import "./Experience.css";
 
 //assets
 import EmailLogo from "../../assets/images/email.png";
-import Star from "../../assets/images/star.png";
+import StarLogo from "../../assets/images/star.png";
 import MobileLogo from "../../assets/images/mobile.png";
 
 const Experienceprops = (props) => {
@@ -24,16 +24,26 @@ const Experienceprops = (props) => {
                 {about_me}
             </p>
             <hr className="return-hr"></hr>
-            <h1 className="return-experiencetitle">გამოცდილება</h1>
+            {props.valueposition && (
+ <h1 className="return-experiencetitle">გამოცდილება</h1>
+ 
+            )}
+           
             <h1 className="return-position">
-                {props.valueposition} {props.valueemployee}
+                {props.valueposition}, {props.valueemployee}
             </h1>
             {/* <h1 className="return-employee">{props.valueemployee}</h1> */}
             <h1 className="return-date">
                 {props.valuestartdate} - {props.valueenddate}
             </h1>
             <p className="return-description">{props.valuediscription}</p>
-            <hr className="return-hr2"></hr>
+            {props.valueposition && (
+ <hr className="return-hr2"></hr>
+ 
+            )}
+           
+            <img alt="" className="star-logo" src={StarLogo}></img>
+
         </div>
     );
 };

@@ -7,10 +7,7 @@ import { connect, useDispatch } from "react-redux";
 
 // assets
 import VectorLogo from "../../assets/images/Vector.png";
-import EllipseLogo from "../../assets/images/Ellipse.png";
-import EmailLogo from "../../assets/images/email.png";
-import Star from "../../assets/images/star.png";
-import MobileLogo from "../../assets/images/mobile.png";
+
 
 import "./Experience.css";
 import Experienceprops from "./Experienceprops";
@@ -181,11 +178,7 @@ const Experience = ({}) => {
     return (
         <div className="experience-container">
             <div className="first">
-                <img
-                    alt=""
-                    className="experience-ellipse"
-                    src={EllipseLogo}
-                ></img>
+               
 
                 <Link to="/">
                     <button

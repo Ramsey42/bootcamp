@@ -1,6 +1,6 @@
 import React from "react";
 import "./Educationprops.css";
-import Star from "../../assets/images/star.png";
+import StarLogo from "../../assets/images/star.png";
 import EmailLogo from "../../assets/images/email.png";
 import MobileLogo from "../../assets/images/mobile.png";
 const Educationprops = (props) => {
@@ -21,21 +21,27 @@ const Educationprops = (props) => {
                 {about_me}
             </p>
             <hr className="return-hr"></hr>
-            <h1 className="return-experiencetitle">{the_employer}</h1>
-            <h1 className="return-position">{position},</h1>
+            <h1 className="return-experiencetitle">გამოცდილება</h1>
+            <h1 className="return-position">{position}, {the_employer}</h1>
             <h1 className="return-date">{start_date} - {end_date}</h1>
             <p className="return-description">
                 {description}
             </p>
             <hr className="return-hr2"></hr>
 
-            <h1 className="return-aducationtitle">განათლება</h1>
+
+{props.valueeducation && (
+ <h1 className="return-aducationtitle">განათლება</h1>
+)}
+           
             <h1 className="return-degreedegree">{props.valueeducation}</h1>
             <h1 className="return-degree">{props.valuedegree}</h1>
             <h1 className="return-graduationdate">{props.valuegraduate}</h1>
             <p className="return-aducation-description">
                 {props.valueedudiscription}
             </p>
+            <img alt="" className="star-logo" src={StarLogo}></img>
+
         </div>
     );
 };

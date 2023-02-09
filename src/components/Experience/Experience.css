@@ -13,7 +13,7 @@
 .first {
     height: 100%;
     width: 1098px;
-    background-color: #474747;
+    background-color: #eee4e4;
 }
 
 .second {
@@ -883,9 +883,13 @@ line-height: 20px;
 color: #1A1A1A;
 }
 .experience-return-button{
-   position: absolute;
-    width: 1px;
-    height: 1px;
+    margin-top: 50px;
+    margin-left: 50px;
+    width: 35px;
+    height: 35px;
+    background-color: #FFFFFF;
+    border-color: #FFFFFF;
+    border-radius: 50%;
 
    
     
