@@ -170,9 +170,7 @@ const Experience = ({}) => {
             setDiscriptionError("ველის შევსება სავალდებულოა");
         } else if (event.target.value.length < 2) {
             setDiscriptionError("გთხოვთ შეიყვანოთ მინიმუმ 2 სიმბოლო");
-        } else if (!/^[ა-ჰ]+$/.test(event.target.value)) {
-            setDiscriptionError("შეიყვანეთ მხოლოდ ქართული სიმბოლოები");
-        } else {
+        }  else {
             setDiscriptionError(null);
         }
     }

@@ -26,7 +26,7 @@ const Experienceprops = (props) => {
             <hr className="return-hr"></hr>
             <h1 className="return-experiencetitle">გამოცდილება</h1>
             <h1 className="return-position">
-                {props.valueposition}, {props.valueemployee}
+                {props.valueposition} {props.valueemployee}
             </h1>
             {/* <h1 className="return-employee">{props.valueemployee}</h1> */}
             <h1 className="return-date">

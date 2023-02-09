@@ -818,11 +818,11 @@ line-height: 20px;
 color: #1A1A1A;
 }
 .return-date {
-    position: absolute;
+position: absolute;
 width: 183px;
 height: 19px;
 left: 1180px;
-top: 575px;
+top: 585px;
 
 font-family: 'Helvetica Neue';
 font-style: italic;

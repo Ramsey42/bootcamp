@@ -36,14 +36,14 @@ color: #1A1A1A;
 }
 .return-degree{
 position: absolute;
-width: 81px;
+width: 271px;
 height: 20px;
 left: 1540px;
 top: 795px;
 
 font-family: 'Helvetica Neue';
 font-style: normal;
-font-weight: 500;
+font-weight: bold;
 font-size: 16px;
 line-height: 20px;
 /* identical to box height */

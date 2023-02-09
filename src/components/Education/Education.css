@@ -467,3 +467,9 @@ flex: none;
 order: 0;
 flex-grow: 0;
 }
+.option{
+    
+    width: 500px;
+    height: 30px;
+    font-weight: bold;
+}

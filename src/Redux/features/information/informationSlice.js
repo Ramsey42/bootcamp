@@ -1,21 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    name: "",
-    last_name: "",
-    photo: "",
-    about_me: "",
-    email: "",
-    mobile_number: "",
-    position: "",
-    the_employer: "",
-    start_date: "",
-    end_date: "",
-    description: "",
-    school: "",
-    degree: "",
-    graduation_year: "",
-    school_description: "",
+    name: localStorage.getItem("inputFieldNameValue") || "",
+    last_name: localStorage.getItem("inputFieldLastnameValue") || "",
+    photo: localStorage.getItem("uploadedImage") || null,
+    about_me:localStorage.getItem("inputFieldAboutValue") || "",
+    email: localStorage.getItem("inputFieldEmailValue") || "",
+    mobile_number: localStorage.getItem("inputFieldMobileValue") || "",
+    position: localStorage.getItem("inputFieldPositionValue") || "",
+    the_employer: localStorage.getItem("inputFieldEmployeeValue") || "",
+    start_date: localStorage.getItem("inputFieldStartdateValue") || "",
+    end_date: localStorage.getItem("inputFieldEnddateValue") || "",
+    description: localStorage.getItem("inputFieldDiscriptionValue") || "",
+    school: localStorage.getItem("inputFieldEducationValue") || "",
+    degree: localStorage.getItem("inputFieldDegreeValue") || "",
+    graduation_year: localStorage.getItem("inputFieldEdudiscription") || "",
+    school_description: localStorage.getItem("inputFieldGraduateValue") || "",
 };
 
 export const informationSlice = createSlice({

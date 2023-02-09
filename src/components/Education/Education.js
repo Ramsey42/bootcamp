@@ -209,17 +209,17 @@ const Education = () => {
                         id="degree"
                         name="degree"
                     >
-                        <option value="option1">საშუალო სკოლის დიპლომი</option>
-                        <option value="option2">
+                        <option value="საშუალო სკოლის დიპლომი">საშუალო სკოლის დიპლომი</option>
+                        <option value="ზოგადსაგანათლებლო დიპლომი">
                             ზოგადსაგანათლებლო დიპლომი
                         </option>
-                        <option value="option3">ბაკალავრი</option>
-                        <option value="option3">მაგისტრი</option>
-                        <option value="option3">დოქტორი</option>
-                        <option value="option3">ასოცირებული ხარისხი</option>
-                        <option value="option3">სტუდენტი</option>
-                        <option value="option3">კოლეჯი(ხარისხის გარეშე)</option>
-                        <option value="option3">სხვა</option>
+                        <option value="ბაკალავრი">ბაკალავრი</option>
+                        <option value="მაგისტრი">მაგისტრი</option>
+                        <option value="დოქტორი">დოქტორი</option>
+                        <option value="ასოცირებული ხარისხი">ასოცირებული ხარისხი</option>
+                        <option value="სტუდენტი">სტუდენტი</option>
+                        <option value="კოლეჯი(ხარისხის გარეშე)">კოლეჯი(ხარისხის გარეშე)</option>
+                        <option value="სხვა">სხვა</option>
                     </select>
                 </div>
 
