@@ -11,11 +11,13 @@ import StarLogo from "../../assets/images/star.png";
 
 import Experience from "../Experience/Experience";
 import "./Genreal.css";
-import { addBasicInfo } from "../../Redux/features/information/informationSlice";
+import {
+    addBasicInfo,
+    addImage,
+} from "../../Redux/features/information/informationSlice";
 
-const General = ({history}) => {
-
-  const dispatch = useDispatch()
+const General = ({ history }) => {
+    const dispatch = useDispatch();
     // const history = useHistory();
     //cleas localstorage
     const clearLocalStorage = () => {
@@ -29,25 +31,25 @@ const General = ({history}) => {
     const [emailError, setEmailError] = useState(null);
     const [mobileError, setMobileError] = useState(null);
 
-
-
     // in case of any errors hide a next button
     function checkErrors() {
-      if (!error && !lastnameError && !emailError && !mobileError) {
-        // item to be added to redux
+        if (!error && !lastnameError && !emailError && !mobileError) {
+            // item to be added to redux
             const payload = {
-              name : valuename,
-              last_name: valuelastname,
-              photo: image, 
-              about_me: valueabout, 
-              email: valueemail, 
-              mobile_number: valuemobile
-            }
-            console.log("payload",payload)
-            dispatch(addBasicInfo(payload))
+                name: valuename,
+                last_name: valuelastname,
+                photo: image,
+                about_me: valueabout,
+                email: valueemail,
+                mobile_number: valuemobile,
+            };
+            dispatch(addBasicInfo(payload));
             return (
                 <Link to="/experience">
-                    <button onClick={handleClick} className="submit-personal-info">
+                    <button
+                        onClick={handleClick}
+                        className="submit-personal-info"
+                    >
                         <p className="submit-personal-info-content">შემდეგი</p>
                     </button>
                 </Link>
@@ -64,9 +66,6 @@ const General = ({history}) => {
         localStorage.setItem("inputFieldNameValue", valuename);
         // history.push(`/experience/${valuename}`);
     }, [valuename]);
-
-
-
 
     function handleChangeName(event) {
         setValuename(event.target.value);
@@ -180,31 +179,42 @@ const General = ({history}) => {
     useEffect(() => {
         localStorage.setItem("uploadedImage", image);
     }, [image]);
+
     function handleChangeUploader(event) {
+        const file = event.target.files[0];
         const reader = new FileReader();
-        reader.onload = (e) => {
-            setImage(e.target.result);
+        reader.onload = () => {
+            const base64EncodedString = reader.result.split(",")[1];
+            setImage(base64EncodedString);
+            const dataUrl = reader.result;
+            localStorage.setItem("photoImage", dataUrl);
         };
         reader.readAsDataURL(event.target.files[0]);
+
+        // const reader = new FileReader();
+        // reader.onload = (e) => {
+        //     setImage(e.target.result);
+        // };
+        // reader.readAsDataURL(event.target.files[0]);
     }
-        //useHistory, check if inputs are not empty
-        const handleClick = (event) => {
-        
-            if (valuename.trim().length > 1 && valuelastname.trim().length > 1 && valueemail.endsWith("@redberry.ge")
-            && /^(\+9955[0-9]{8})$/.test(valuemobile) && image != null
-            ) {
-              history.push("/experience");
-            } else {
-                event.preventDefault();
-              
-            }
-          };
+    //useHistory, check if inputs are not empty
+    const handleClick = (event) => {
+        if (
+            valuename.trim().length > 1 &&
+            valuelastname.trim().length > 1 &&
+            valueemail.endsWith("@redberry.ge") &&
+            /^(\+9955[0-9]{8})$/.test(valuemobile) &&
+            image != null
+        ) {
+            history.push("/experience");
+        } else {
+            event.preventDefault();
+        }
+    };
 
     return (
         <div className="general-container">
             <div className="left-div">
-           
-
                 <Link to="/">
                     <button
                         className="general-return-button"
@@ -261,7 +271,6 @@ const General = ({history}) => {
                         <input
                             className="input-lastname"
                             value={valuelastname}
-                          
                             onChange={(event) => {
                                 handleChangeLastname(event);
                             }}
@@ -284,7 +293,6 @@ const General = ({history}) => {
                 <p className="upload-title">პირადი ფოტოს ატვირთვა</p>
                 <div className="upload">
                     <input
-                        
                         type="file"
                         id="file-input"
                         onChange={handleChangeUploader}
@@ -332,7 +340,6 @@ const General = ({history}) => {
                     <p className="mobile-title">მობილურის ნომერი</p>
                     <input
                         value={valuemobile}
-                      
                         onChange={(event) => {
                             handleChangeMobile(event);
                         }}
@@ -356,30 +363,42 @@ const General = ({history}) => {
 
                 <h1 className="output-lastname">{valuelastname}</h1>
                 {image && (
-                    <img className="return-image" src={image} alt="" />
+                    <img
+                        className="return-image"
+                        src={`data:image/jpeg;base64,${image}`}
+                        alt=""
+                    />
                 )}
 
                 <p className="output-email">
-                {valueemail && (
-        <img
-          style={{ position: "absolute", marginLeft: "-20px" }}
-          alt=""
-          src={EmailLogo}
-        />
-      )}
+                    {valueemail && (
+                        <img
+                            style={{
+                                position: "absolute",
+                                marginLeft: "-20px",
+                            }}
+                            alt=""
+                            src={EmailLogo}
+                        />
+                    )}
                     {valueemail}
                 </p>
                 <p className="output-mobile">
-                {valuemobile && (
-        <img
-          style={{ position: "absolute", marginLeft: "-20px" }}
-          alt=""
-          src={MobileLogo}
-        />
-      )}
+                    {valuemobile && (
+                        <img
+                            style={{
+                                position: "absolute",
+                                marginLeft: "-20px",
+                            }}
+                            alt=""
+                            src={MobileLogo}
+                        />
+                    )}
                     {valuemobile}
                 </p>
-             {valueabout && (<h1 className="about-output-title">ჩემ შესახებ</h1>)}   
+                {valueabout && (
+                    <h1 className="about-output-title">ჩემ შესახებ</h1>
+                )}
                 <p className="about-output">{valueabout}</p>
             </div>
             <img alt="" className="star-logo" src={StarLogo}></img>

@@ -4,7 +4,7 @@ const initialState = {
     name: localStorage.getItem("inputFieldNameValue") || "",
     last_name: localStorage.getItem("inputFieldLastnameValue") || "",
     photo: localStorage.getItem("uploadedImage") || null,
-    about_me:localStorage.getItem("inputFieldAboutValue") || "",
+    about_me: localStorage.getItem("inputFieldAboutValue") || "",
     email: localStorage.getItem("inputFieldEmailValue") || "",
     mobile_number: localStorage.getItem("inputFieldMobileValue") || "",
     position: localStorage.getItem("inputFieldPositionValue") || "",
@@ -16,12 +16,18 @@ const initialState = {
     degree: localStorage.getItem("inputFieldDegreeValue") || "",
     graduation_year: localStorage.getItem("inputFieldEdudiscription") || "",
     school_description: localStorage.getItem("inputFieldGraduateValue") || "",
+    image: "",
+    apiData: "",
 };
 
 export const informationSlice = createSlice({
     name: "information",
     initialState,
     reducers: {
+        addImage: (state, action) => {
+            const { image } = action.payload;
+            state.image = image;
+        },
         addBasicInfo: (state, action) => {
             const { name, last_name, photo, about_me, email, mobile_number } =
                 action.payload;
@@ -54,10 +60,19 @@ export const informationSlice = createSlice({
             state.graduation_year = graduation_year;
             state.school_description = school_description;
         },
+        setApiData: (state, action) => {
+            state.apiData = action.payload;
+        },
     },
 });
 
 // Action creators are generated for each case reducer function
-export const { addBasicInfo, addJobInformation, addSchoolInformation } = informationSlice.actions;
+export const {
+    addBasicInfo,
+    addJobInformation,
+    addSchoolInformation,
+    addImage,
+    setApiData,
+} = informationSlice.actions;
 
 export default informationSlice.reducer;
