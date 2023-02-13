@@ -49,6 +49,8 @@ const Education = ({ history }) => {
 
     // in case of any errors hide a next button
     async function checkErrors() {
+
+
         if (
             !educationError &&
             !degreeError &&
@@ -170,7 +172,7 @@ const Education = ({ history }) => {
             if (createdCv.status === 201) {
                 dispatch(setApiData(createdCv.data));
                 navigate("/success");
-
+                localStorage.clear();
                 // return (
                 //     <Link to="/success">
                 //         <button
@@ -184,6 +186,7 @@ const Education = ({ history }) => {
                 // );
             }
         }
+     
     }
 
     //education
